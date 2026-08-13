@@ -3,9 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <title>AgroAnima</title>
 </head>
 <body>
+
+    <header class="techo-del-rancho">
+
+  <div class="cinta-cazadora">
+    <div class="contenedor-oscuro">
+
+     
+      <form class="buscador-avispado" action="/buscar" method="GET">
+        <input type="text" name="q" placeholder="¿Qué insumo buscamos hoy?" aria-label="Buscar productos">
+        <button type="submit" aria-label="Buscar">
+          <i class="icono-lupa-firme"></i>
+        </button>
+      </form>
+
+      
+      <div class="opciones-de-una">
+        <a href="/perfil" class="perfil-parcero" aria-label="Perfil de usuario">
+          <i class="icono-compita"></i>
+        </a>
+        <span class="plata-lucas">COP</span>
+      </div>
+
+    </div>
+  </div>
+
+  
+  <nav class="brujula-principal">
+    <div class="contenedor-fino">
+
+      
+      <div class="sello-grafico">
+        <a href="/">
+          <img src="./img/logohorizontalletrasazules.png" alt="Logo de AgroAnima Colombia">
+        </a>
+      </div>
+
+      
+      <ul class="rutas-del-parche">
+        <li><a href="/" class="la-propia">Inicio</a></li>
+        <li><a href="/catalogo">Catálogo</a></li>
+        <li><a href="/nutricion">Nutrición</a></li>
+        <li><a href="/salud">Salud</a></li>
+        <li><a href="/equipos">Equipos</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+
+      
+      <div class="movidas-rapidas">
+        <a href="/login" class="enlace-pilo" aria-label="Iniciar sesión">
+          <i class="icono-entrar"></i>
+        </a>
+        <a href="/carrito" class="el-canasto" aria-label="Ver carrito">
+          <i class="icono-mercado"></i>
+          <span class="notificacion-campanazo">3</span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+</header>
     
+
+    <script src="index.js"></script>
 </body>
 </html>
