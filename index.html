@@ -8,20 +8,21 @@
 </head>
 <body>
 
-    <header class="techo-del-rancho">
+<header class="techo-del-rancho">
 
+  <!-- FRANJA OSCURA SUPERIOR -->
   <div class="cinta-cazadora">
-    <div class="contenedor-oscuro">
+    <div class="contenedor-tinto">
 
-     
+      <!-- Buscador (Actualizado para coincidir con la imagen) -->
       <form class="buscador-avispado" action="/buscar" method="GET">
-        <input type="text" name="q" placeholder="¿Qué insumo buscamos hoy?" aria-label="Buscar productos">
-        <button type="submit" aria-label="Buscar">
-          <i class="icono-lupa-firme"></i>
-        </button>
+        <!-- 1. Ponemos el icono PRIMERO para que quede a la izquierda -->
+        <i class="icono-lupa-firme"></i>
+        <!-- 2. Actualizamos el placeholder al texto exacto -->
+        <input type="text" name="q" placeholder="Buscar productos..." aria-label="Buscar productos">
       </form>
 
-      
+      <!-- Usuario y Moneda -->
       <div class="opciones-de-una">
         <a href="/perfil" class="perfil-parcero" aria-label="Perfil de usuario">
           <i class="icono-compita"></i>
@@ -53,7 +54,7 @@
         <li><a href="/contacto">Contacto</a></li>
       </ul>
 
-      
+     
       <div class="movidas-rapidas">
         <a href="/login" class="enlace-pilo" aria-label="Iniciar sesión">
           <i class="icono-entrar"></i>
@@ -68,7 +69,42 @@
   </nav>
 
 </header>
-    
+  
+
+
+<section class="el-potrero-principal">
+   
+  <div class="sombra-bacana">
+     
+    <div class="cuadre-del-texto">
+  
+      <span class="chapa-de-orgullo">LÍDERES EN COLOMBIA</span>
+  
+      <h1 class="el-grito-fuerte">
+        SOLUCIONES INTEGRALES PARA EL AGRO COLOMBIANO
+      </h1>
+  
+      <p class="la-carreta-buena">
+        Liderando la innovación en nutrición, salud y tecnología animal y agrícola. Calidad respaldada por expertos.
+      </p>
+ 
+      <div class="los-botones-bravos">
+        <a href="/catalogo" class="boton-pa-lante">EXPLORAR PRODUCTOS</a>
+        <a href="/contacto" class="boton-suave">SOLICITAR COTIZACIÓN</a>
+      </div>
+
+    </div>
+ 
+    <div class="las-pepas-guia" aria-label="Controles del carrusel de imágenes">
+      <button class="flecha-pa-tras" aria-label="Ver imagen anterior"></button>
+      <span class="pepa-activa" aria-current="true"></span>
+      <span class="pepa-dormida"></span>
+      <button class="flecha-pa-lante" aria-label="Ver siguiente imagen"></button>
+    </div>
+
+  </div>
+
+</section>
 
     <script src="index.js"></script>
 </body>

@@ -1,0 +1,271 @@
+
+:root {
+  --verde-agro: #119e8c; 
+  --verde-claro: #c2e2d8; 
+  --azul-noche: #242a35; 
+  --texto-oscuro: #2c3e50;
+  --blanco-puro: #ffffff;
+  --fucsia-alerta: #d81b60; 
+  --gris-texto: #4a4a4a;
+  --dorado-moneda: #f39c12; 
+}
+
+
+.techo-del-rancho {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--blanco-puro);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+}
+
+
+.cinta-cazadora {
+  background-color: #1c2331; 
+  padding: 12px 0;
+  color: var(--blanco-puro);
+}
+
+.contenedor-tinto {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 30px; 
+}
+
+
+.buscador-avispado {
+  display: flex;
+  align-items: center;
+  background-color: var(--blanco-puro);
+  border-radius: 6px; 
+  padding: 8px 16px; 
+  width: 320px; 
+  gap: 12px; 
+}
+
+.buscador-avispado i {
+  color: #7a7a7a; 
+  font-size: 1.2rem;
+}
+
+.buscador-avispado input {
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--texto-oscuro);
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+.buscador-avispado input::placeholder {
+  color: #999999; 
+}
+
+
+.opciones-de-una {
+  display: flex;
+  align-items: center;
+  gap: 25px; 
+}
+
+
+.perfil-parcero {
+  color: var(--blanco-puro);
+  font-size: 1.4rem; 
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+
+.plata-lucas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: var(--blanco-puro);
+  font-weight: 500;
+}
+
+
+.plata-lucas::before {
+  content: 'COP';
+  background: linear-gradient(135deg, #f9d976 0%, #e8b923 100%); /* Degradado para dar efecto oro */
+  color: #5c4300; /* Letra café oscuro por dentro */
+  font-size: 0.55rem;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3); 
+}
+
+
+.brujula-principal {
+  padding: 15px 0;
+}
+
+.contenedor-fino {
+  max-width: 1250px; 
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sello-grafico img {
+  height: 70px; 
+}
+
+.rutas-del-parche {
+  display: flex;
+  gap: 35px; 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rutas-del-parche a {
+  text-decoration: none;
+  color: var(--gris-texto);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+}
+
+.rutas-del-parche a:hover,
+.rutas-del-parche a.la-propia {
+  color: var(--verde-agro);
+  border-bottom: 2px solid var(--verde-agro); 
+}
+
+.movidas-rapidas {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.enlace-pilo, .el-canasto {
+  text-decoration: none;
+  color: var(--texto-oscuro);
+  font-size: 1.3rem; 
+}
+
+.el-canasto {
+  position: relative;
+}
+
+.notificacion-campanazo {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--fucsia-alerta);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+
+.el-potrero-principal {
+  position: relative;
+  height: 80vh; 
+  min-height: 550px;
+  background-image: url('./img/Imagen\ del\ Hero.png'); 
+  background-size: cover; 
+  background-position: center;
+}
+
+
+.sombra-bacana {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0) 10%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%);
+  display: flex;
+  align-items: center; 
+  justify-content: flex-end; 
+  padding-right: 8%; 
+}
+
+.cuadre-del-texto {
+  max-width: 650px;
+  text-align: left; 
+  padding-top: 40px; 
+}
+
+.chapa-de-orgullo {
+  display: inline-block; 
+  background-color: var(--verde-claro);
+  color: #1a4a3e; 
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.el-grito-fuerte {
+  color: var(--blanco-puro);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.la-carreta-buena {
+  color: #e0e0e0; 
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+.los-botones-bravos {
+  display: flex;
+  gap: 15px; 
+}
+
+.boton-pa-lante, 
+.boton-suave {
+  padding: 14px 28px;
+  border-radius: 6px; 
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.boton-pa-lante {
+  background-color: var(--verde-agro);
+  color: var(--blanco-puro);
+  border: 2px solid var(--verde-agro);
+}
+
+.boton-suave {
+  background-color: var(--blanco-puro);
+  color: var(--texto-oscuro);
+  border: 2px solid var(--blanco-puro);
+}
+
+.las-pepas-guia {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%); 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
