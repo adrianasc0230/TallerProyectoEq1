@@ -94,8 +94,8 @@
 
 .plata-lucas::before {
   content: 'COP';
-  background: linear-gradient(135deg, #f9d976 0%, #e8b923 100%); /* Degradado para dar efecto oro */
-  color: #5c4300; /* Letra café oscuro por dentro */
+  background: linear-gradient(135deg, #f9d976 0%, #e8b923 100%); 
+  color: #5c4300; 
   font-size: 0.55rem;
   font-weight: 800;
   display: flex;
@@ -148,32 +148,54 @@
   border-bottom: 2px solid var(--verde-agro); 
 }
 
+/* ESTILOS PARA LOS ICONOS (Usuario y Carrito)*/
+
 .movidas-rapidas {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px; 
 }
+
 
 .enlace-pilo, .el-canasto {
   text-decoration: none;
-  color: var(--texto-oscuro);
-  font-size: 1.3rem; 
+  color: #333333; 
+  position: relative;
+  display: flex; 
+  align-items: center;
 }
 
-.el-canasto {
-  position: relative;
+
+.enlace-pilo i, .el-canasto i {
+  font-size: 1.6rem; 
+  transition: color 0.3s ease;
 }
+
+
+.enlace-pilo:hover i, .el-canasto:hover i {
+  color: var(--verde-agro); 
+}
+
 
 .notificacion-campanazo {
   position: absolute;
-  top: -8px;
-  right: -10px;
-  background-color: var(--fucsia-alerta);
-  color: white;
+  top: -6px; 
+  right: -8px; 
+  background-color: #d81b60; 
+  color: #ffffff;
   font-size: 0.7rem;
-  font-weight: bold;
-  padding: 2px 6px;
+  font-weight: 700;
+  
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px; 
+  height: 18px; 
   border-radius: 50%;
+  
+  
+  box-shadow: 0 2px 4px rgba(216, 27, 96, 0.3);
 }
 
 

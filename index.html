@@ -5,24 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>AgroAnima</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
 <header class="techo-del-rancho">
 
-  <!-- FRANJA OSCURA SUPERIOR -->
+  
   <div class="cinta-cazadora">
     <div class="contenedor-tinto">
 
-      <!-- Buscador (Actualizado para coincidir con la imagen) -->
+      
       <form class="buscador-avispado" action="/buscar" method="GET">
-        <!-- 1. Ponemos el icono PRIMERO para que quede a la izquierda -->
         <i class="icono-lupa-firme"></i>
-        <!-- 2. Actualizamos el placeholder al texto exacto -->
         <input type="text" name="q" placeholder="Buscar productos..." aria-label="Buscar productos">
       </form>
 
-      <!-- Usuario y Moneda -->
+     
       <div class="opciones-de-una">
         <a href="/perfil" class="perfil-parcero" aria-label="Perfil de usuario">
           <i class="icono-compita"></i>
@@ -37,14 +36,12 @@
   <nav class="brujula-principal">
     <div class="contenedor-fino">
 
-      
       <div class="sello-grafico">
         <a href="/">
           <img src="./img/logohorizontalletrasazules.png" alt="Logo de AgroAnima Colombia">
         </a>
       </div>
 
-      
       <ul class="rutas-del-parche">
         <li><a href="/" class="la-propia">Inicio</a></li>
         <li><a href="/catalogo">Catálogo</a></li>
@@ -54,14 +51,17 @@
         <li><a href="/contacto">Contacto</a></li>
       </ul>
 
+
+      
+
      
+      
       <div class="movidas-rapidas">
         <a href="/login" class="enlace-pilo" aria-label="Iniciar sesión">
-          <i class="icono-entrar"></i>
-        </a>
-        <a href="/carrito" class="el-canasto" aria-label="Ver carrito">
-          <i class="icono-mercado"></i>
-          <span class="notificacion-campanazo">3</span>
+          <i class='bx bx-user'></i></a>
+         <a href="/carrito" class="el-canasto" aria-label="Ver carrito">
+          <i class='bx bx-cart'></i>
+         <span class="notificacion-campanazo">3</span>
         </a>
       </div>
 
