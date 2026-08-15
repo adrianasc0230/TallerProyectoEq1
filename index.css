@@ -11,6 +11,28 @@
 }
 
 
+/* =========================================
+   ESTILOS BASE (Reseteo y Tipografía)
+   ========================================= */
+body {
+  margin: 0;
+  padding: 0;
+  /* Aplicamos una letra limpia y profesional (Sans-serif) a toda la página */
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--texto-oscuro);
+}
+
+/* =========================================
+   EL NUEVO CONTENEDOR PARA LAS SECCIONES
+   ========================================= */
+.contenedor-seccion {
+  max-width: 1250px;
+  margin: 0 auto; /* Esto es lo que lo centra en la pantalla */
+  padding: 0 40px;
+  /* FÍJATE QUE AQUÍ NO HAY "display: flex". 
+     Así los elementos caerán uno debajo del otro de forma natural. */
+}
+
 .techo-del-rancho {
   position: sticky;
   top: 0;
@@ -290,4 +312,132 @@
   align-items: center;
   gap: 10px;
   color: white;
+}
+
+/* =========================================
+   ESTILOS GENERALES DE LAS SECCIONES (Fondos y Títulos)
+   ========================================= */
+.los-combos-del-campo, 
+.lo-mas-melo {
+  padding: 60px 0;
+  background-color: #fafafa; /* Fondo gris muy clarito para que la tarjeta blanca resalte */
+}
+
+/* El contenedor que obliga al título y al párrafo a centrarse */
+.encabezado-del-parche {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;
+  margin-bottom: 40px; 
+  width: 100%;
+}
+
+.titulo-firme {
+  color: var(--texto-oscuro); 
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.la-carreta-suave {
+  color: #666666;
+  font-size: 1rem;
+  max-width: 600px; /* Evita que el texto se estire demasiado a los lados */
+}
+
+
+/* =========================================
+   1. NUESTRAS CATEGORÍAS (Diseño Calibrado)
+   ========================================= */
+.cuadricula-categorias {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* Separación exacta entre las tarjetas */
+}
+
+.tarjeta-combo {
+  position: relative;
+  height: 280px; /* Altura ajustada para dar más respiro al contenido */
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #333;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  
+  /* Flexbox maestro: Centra todo el bloque de texto en el medio de la tarjeta */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarjeta-combo:hover {
+  transform: translateY(-5px);
+}
+
+.sombra-oscura {
+  position: absolute;
+  inset: 0;
+  /* Una capa oscura sólida al 60% para garantizar que el texto blanco resalte 
+     sin importar qué tan clara sea la foto de fondo */
+  background: rgba(0, 0, 0, 0.6); 
+  z-index: 1;
+}
+
+.contenido-combo {
+  position: relative;
+  z-index: 2; /* Sube el texto por encima de la sombra */
+  text-align: center;
+  color: var(--blanco-puro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px; /* Evita que los textos largos toquen los bordes laterales */
+  width: 100%;
+}
+
+/* El ícono circular con fondo menta */
+.icono-redondo {
+  background-color: #e0f2f1; /* Verde menta muy clarito */
+  color: #119e8c; /* Verde esmeralda de la marca */
+  width: 55px; /* Tamaño ampliado para igualar la imagen */
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  margin-bottom: 15px; /* Espacio exacto hasta el título */
+}
+
+.nombre-combo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* El texto pequeño de descripción */
+.descripcion-combo {
+  font-size: 0.85rem;
+  color: #e0e0e0; /* Un blanco ligeramente atenuado para no competir con el título */
+  margin-bottom: 22px; /* Más espacio antes del enlace "Ver Categoría" */
+  line-height: 1.4;
+}
+
+/* El enlace final con la flecha */
+.enlace-flecha {
+  color: var(--blanco-puro);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.enlace-flecha:hover {
+  color: #e0f2f1;
 }
