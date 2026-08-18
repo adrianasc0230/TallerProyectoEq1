@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suplemento Lechero Premium 40kg | Agroanima</title>
+    <link rel="stylesheet" href="detalle.css">
+</head>
+<body>
+ <main>
+ 
+        <div class="contenedor">
+            <div class="ruta">
+                <a href="#">Inicio</a>
+                <span class="separador">›</span>
+                <a href="#">Catálogo</a>
+                <span class="separador">›</span>
+                <span class="actual" id="rutaActual">Cargando...</span>
+            </div>
+        </div>
+ 
+        <div class="contenedor">
+            <section class="producto">
+ 
+                <div class="galeria">
+                    <div class="galeria-principal">
+                        <img id="mainImage" alt="">
+                    </div>
+                    <div class="thumbs" id="thumbs"></div>
+                </div>
+ 
+                <div class="informacion">
+                    <div class="p-eyebrow" id="pEyebrow">Cargando...</div>
+                    <h1 class="p-title" id="pTitle">Cargando producto...</h1>
+ 
+                    <div class="p-rating">
+                        <span class="stars" id="pStars"></span>
+                        <span class="count" id="pReviewCount"></span>
+                    </div>
+ 
+                    <div class="p-price" id="pPrice">—</div>
+ 
+                    <p class="p-desc" id="pDesc"></p>
+ 
+                    <div class="p-buy-row">
+                        <div class="qty">
+                            <button type="button" aria-label="Disminuir cantidad">−</button>
+                            <span id="qtyValue">1</span>
+                            <button type="button" aria-label="Aumentar cantidad">+</button>
+                        </div>
+                        <button class="btn btn-add" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+ 
+                    <button class="btn btn-buy" type="button">Comprar Ahora</button>
+ 
+                    <div class="p-specs">
+                        <h3>Especificaciones Técnicas</h3>
+                        <div class="specs-table" id="specsTable"></div>
+                    </div>
+                </div>
+ 
+            </section>
+        </div>
+ 
+        <section class="related">
+            <div class="contenedor">
+                <h2>Productos Relacionados</h2>
+                <p class="sub">Completa tu pedido con más nutrición y bienestar</p>
+ 
+                <div class="related-grid" id="relatedGrid"></div>
+            </div>
+        </section>
+ 
+    </main>
+ 
+    <script src="detalles.js"></script>
+</body>
+</html>
