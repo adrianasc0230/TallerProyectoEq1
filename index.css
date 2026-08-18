@@ -1,0 +1,443 @@
+
+:root {
+  --verde-agro: #119e8c; 
+  --verde-claro: #c2e2d8; 
+  --azul-noche: #242a35; 
+  --texto-oscuro: #2c3e50;
+  --blanco-puro: #ffffff;
+  --fucsia-alerta: #d81b60; 
+  --gris-texto: #4a4a4a;
+  --dorado-moneda: #f39c12; 
+}
+
+
+/* =========================================
+   ESTILOS BASE (Reseteo y Tipografía)
+   ========================================= */
+body {
+  margin: 0;
+  padding: 0;
+  /* Aplicamos una letra limpia y profesional (Sans-serif) a toda la página */
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--texto-oscuro);
+}
+
+/* =========================================
+   EL NUEVO CONTENEDOR PARA LAS SECCIONES
+   ========================================= */
+.contenedor-seccion {
+  max-width: 1250px;
+  margin: 0 auto; /* Esto es lo que lo centra en la pantalla */
+  padding: 0 40px;
+  /* FÍJATE QUE AQUÍ NO HAY "display: flex". 
+     Así los elementos caerán uno debajo del otro de forma natural. */
+}
+
+.techo-del-rancho {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--blanco-puro);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+}
+
+
+.cinta-cazadora {
+  background-color: #1c2331; 
+  padding: 12px 0;
+  color: var(--blanco-puro);
+}
+
+.contenedor-tinto {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 30px; 
+}
+
+
+.buscador-avispado {
+  display: flex;
+  align-items: center;
+  background-color: var(--blanco-puro);
+  border-radius: 6px; 
+  padding: 8px 16px; 
+  width: 320px; 
+  gap: 12px; 
+}
+
+.buscador-avispado i {
+  color: #7a7a7a; 
+  font-size: 1.2rem;
+}
+
+.buscador-avispado input {
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--texto-oscuro);
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+.buscador-avispado input::placeholder {
+  color: #999999; 
+}
+
+
+.opciones-de-una {
+  display: flex;
+  align-items: center;
+  gap: 25px; 
+}
+
+
+.perfil-parcero {
+  color: var(--blanco-puro);
+  font-size: 1.4rem; 
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+
+.plata-lucas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: var(--blanco-puro);
+  font-weight: 500;
+}
+
+
+.plata-lucas::before {
+  content: 'COP';
+  background: linear-gradient(135deg, #f9d976 0%, #e8b923 100%); 
+  color: #5c4300; 
+  font-size: 0.55rem;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3); 
+}
+
+
+.brujula-principal {
+  padding: 15px 0;
+}
+
+.contenedor-fino {
+  max-width: 1250px; 
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sello-grafico img {
+  height: 70px; 
+}
+
+.rutas-del-parche {
+  display: flex;
+  gap: 35px; 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rutas-del-parche a {
+  text-decoration: none;
+  color: var(--gris-texto);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+}
+
+.rutas-del-parche a:hover,
+.rutas-del-parche a.la-propia {
+  color: var(--verde-agro);
+  border-bottom: 2px solid var(--verde-agro); 
+}
+
+/* ESTILOS PARA LOS ICONOS (Usuario y Carrito)*/
+
+.movidas-rapidas {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+
+.enlace-pilo, .el-canasto {
+  text-decoration: none;
+  color: #333333; 
+  position: relative;
+  display: flex; 
+  align-items: center;
+}
+
+
+.enlace-pilo i, .el-canasto i {
+  font-size: 1.6rem; 
+  transition: color 0.3s ease;
+}
+
+
+.enlace-pilo:hover i, .el-canasto:hover i {
+  color: var(--verde-agro); 
+}
+
+
+.notificacion-campanazo {
+  position: absolute;
+  top: -6px; 
+  right: -8px; 
+  background-color: #d81b60; 
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px; 
+  height: 18px; 
+  border-radius: 50%;
+  
+  
+  box-shadow: 0 2px 4px rgba(216, 27, 96, 0.3);
+}
+
+
+.el-potrero-principal {
+  position: relative;
+  height: 80vh; 
+  min-height: 550px;
+  background-image: url('./img/Imagen\ del\ Hero.png'); 
+  background-size: cover; 
+  background-position: center;
+}
+
+
+.sombra-bacana {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0) 10%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%);
+  display: flex;
+  align-items: center; 
+  justify-content: flex-end; 
+  padding-right: 8%; 
+}
+
+.cuadre-del-texto {
+  max-width: 650px;
+  text-align: left; 
+  padding-top: 40px; 
+}
+
+.chapa-de-orgullo {
+  display: inline-block; 
+  background-color: var(--verde-claro);
+  color: #1a4a3e; 
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.el-grito-fuerte {
+  color: var(--blanco-puro);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.la-carreta-buena {
+  color: #e0e0e0; 
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+.los-botones-bravos {
+  display: flex;
+  gap: 15px; 
+}
+
+.boton-pa-lante, 
+.boton-suave {
+  padding: 14px 28px;
+  border-radius: 6px; 
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.boton-pa-lante {
+  background-color: var(--verde-agro);
+  color: var(--blanco-puro);
+  border: 2px solid var(--verde-agro);
+}
+
+.boton-suave {
+  background-color: var(--blanco-puro);
+  color: var(--texto-oscuro);
+  border: 2px solid var(--blanco-puro);
+}
+
+.las-pepas-guia {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%); 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+/* =========================================
+   ESTILOS GENERALES DE LAS SECCIONES (Fondos y Títulos)
+   ========================================= */
+.los-combos-del-campo, 
+.lo-mas-melo {
+  padding: 60px 0;
+  background-color: #fafafa; /* Fondo gris muy clarito para que la tarjeta blanca resalte */
+}
+
+/* El contenedor que obliga al título y al párrafo a centrarse */
+.encabezado-del-parche {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;
+  margin-bottom: 40px; 
+  width: 100%;
+}
+
+.titulo-firme {
+  color: var(--texto-oscuro); 
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.la-carreta-suave {
+  color: #666666;
+  font-size: 1rem;
+  max-width: 600px; /* Evita que el texto se estire demasiado a los lados */
+}
+
+
+/* =========================================
+   1. NUESTRAS CATEGORÍAS (Diseño Calibrado)
+   ========================================= */
+.cuadricula-categorias {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* Separación exacta entre las tarjetas */
+}
+
+.tarjeta-combo {
+  position: relative;
+  height: 280px; /* Altura ajustada para dar más respiro al contenido */
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #333;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  
+  /* Flexbox maestro: Centra todo el bloque de texto en el medio de la tarjeta */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarjeta-combo:hover {
+  transform: translateY(-5px);
+}
+
+.sombra-oscura {
+  position: absolute;
+  inset: 0;
+  /* Una capa oscura sólida al 60% para garantizar que el texto blanco resalte 
+     sin importar qué tan clara sea la foto de fondo */
+  background: rgba(0, 0, 0, 0.6); 
+  z-index: 1;
+}
+
+.contenido-combo {
+  position: relative;
+  z-index: 2; /* Sube el texto por encima de la sombra */
+  text-align: center;
+  color: var(--blanco-puro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px; /* Evita que los textos largos toquen los bordes laterales */
+  width: 100%;
+}
+
+/* El ícono circular con fondo menta */
+.icono-redondo {
+  background-color: #e0f2f1; /* Verde menta muy clarito */
+  color: #119e8c; /* Verde esmeralda de la marca */
+  width: 55px; /* Tamaño ampliado para igualar la imagen */
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  margin-bottom: 15px; /* Espacio exacto hasta el título */
+}
+
+.nombre-combo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* El texto pequeño de descripción */
+.descripcion-combo {
+  font-size: 0.85rem;
+  color: #e0e0e0; /* Un blanco ligeramente atenuado para no competir con el título */
+  margin-bottom: 22px; /* Más espacio antes del enlace "Ver Categoría" */
+  line-height: 1.4;
+}
+
+/* El enlace final con la flecha */
+.enlace-flecha {
+  color: var(--blanco-puro);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.enlace-flecha:hover {
+  color: #e0f2f1;
+}

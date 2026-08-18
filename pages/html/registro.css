@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+        --verde-agro: #119e8c;
+        --verde-claro: #c2e2d8;
+        --gris-texto: #4a4a4a;
+        --borde: #009688;
+        --gris: #6b7280;
+        --blanco-puro: #ffffff;
+        --texto-oscuro: #2c3e50;
+        --fucsia-alerta: #d81b60;
+        --azul-noche: #242a35;
+        --radio: 8px;
+        --sombra: 0 10px 35px rgba(0,0,0,0.08);
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--blanco-puro)
+    color: var(var(--verde-agro));
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+.contenedor {                                                 /*main*/
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    justify-content: center;
+}
+.registro {
+    width: 100%;
+    max-width: 700px;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 80px 66px 66px;
+    background: var(--blanco-puro);
+    box-shadow: 0 3px 15px var(--verde-agro); 
+}
+h1{                                                          /*crea tu cuenta*/
+    text-align: center;
+    font-size: 50px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+}
+.subtitulo {
+    text-align: center;
+    color: var(--gris-texto);
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+.campo {
+    margin-bottom: 25px;
+}
+
+.campo label {
+    display: block;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.campo input {
+    width: 100%;
+    height: 58px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 0 10px;
+    font-size: 19px;
+    color: var(--verde-agro);
+    outline: none;
+    transition: 0.2s;
+}
+.campo input::placeholder {
+    color: var(--gris-texto);
+}
+.campo input:focus {
+    border-color: var(--azul-noche);
+    box-shadow: 0 0 0 2 var(--gris);
+}
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 60px;
+}
+
+.ver-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--azul-noche);
+}

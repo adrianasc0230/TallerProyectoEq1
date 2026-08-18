@@ -1,11 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <title>AgroAnima</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+
+<header class="techo-del-rancho">
+
+  
+  <div class="cinta-cazadora">
+    <div class="contenedor-tinto">
+
+      
+      <form class="buscador-avispado" action="/buscar" method="GET">
+        <i class="icono-lupa-firme"></i>
+        <input type="text" name="q" placeholder="Buscar productos..." aria-label="Buscar productos">
+      </form>
+
+     
+      <div class="opciones-de-una">
+        <a href="/perfil" class="perfil-parcero" aria-label="Perfil de usuario">
+          <i class="icono-compita"></i>
+        </a>
+        <span class="plata-lucas">COP</span>
+      </div>
+
+    </div>
+  </div>
+
+  
+  <nav class="brujula-principal">
+    <div class="contenedor-fino">
+
+      <div class="sello-grafico">
+        <a href="/">
+          <img src="./img/logohorizontalletrasazules.png" alt="Logo de AgroAnima Colombia">
+        </a>
+      </div>
+
+      <ul class="rutas-del-parche">
+        <li><a href="/" class="la-propia">Inicio</a></li>
+        <li><a href="/pages/html/catalogo.html">Catálogo</a></li>
+        <li><a href="/nutricion">Nutrición</a></li>
+        <li><a href="/salud">Salud</a></li>
+        <li><a href="/equipos">Equipos</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+
+
+      
+
+     
+      
+      <div class="movidas-rapidas">
+        <a href="/login" class="enlace-pilo" aria-label="Iniciar sesión">
+          <i class='bx bx-user'></i></a>
+         <a href="/carrito" class="el-canasto" aria-label="Ver carrito">
+          <i class='bx bx-cart'></i>
+         <span class="notificacion-campanazo">3</span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+</header>
+  
+
+
+<section class="el-potrero-principal">
+   
+  <div class="sombra-bacana">
+     
+    <div class="cuadre-del-texto">
+  
+      <span class="chapa-de-orgullo">LÍDERES EN COLOMBIA</span>
+  
+      <h1 class="el-grito-fuerte">
+        SOLUCIONES INTEGRALES PARA EL AGRO COLOMBIANO
+      </h1>
+  
+      <p class="la-carreta-buena">
+        Liderando la innovación en nutrición, salud y tecnología animal y agrícola. Calidad respaldada por expertos.
+      </p>
+ 
+      <div class="los-botones-bravos">
+        <a href="/catalogo" class="boton-pa-lante">EXPLORAR PRODUCTOS</a>
+        <a href="/contacto" class="boton-suave">SOLICITAR COTIZACIÓN</a>
+      </div>
+
+    </div>
+ 
+    <div class="las-pepas-guia" aria-label="Controles del carrusel de imágenes">
+      <button class="flecha-pa-tras" aria-label="Ver imagen anterior"></button>
+      <span class="pepa-activa" aria-current="true"></span>
+      <span class="pepa-dormida"></span>
+      <button class="flecha-pa-lante" aria-label="Ver siguiente imagen"></button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================
+     SECCIÓN: NUESTRAS CATEGORÍAS
+     ========================================= -->
+<section class="los-combos-del-campo">
+  <div class="contenedor-seccion">
     
+    <!-- Encabezado de la sección -->
+    <div class="encabezado-del-parche">
+      <h2 class="titulo-firme">Nuestras Categorías</h2>
+      <p class="la-carreta-suave">Selecciones especializadas para cada una de tus necesidades en el campo</p>
+    </div>
+
+    <!-- Contenedor Grid para las 4 tarjetas -->
+    <div class="cuadricula-categorias">
+      
+      <!-- TARJETA 1: Nutrición Animal -->
+      <article class="tarjeta-combo" style="background-image: url('./img/Imagen\ del\ Hero.png');">
+        <!-- Capa oscura para garantizar lectura -->
+        <div class="sombra-oscura"></div> 
+        
+        <!-- Contenido centrado -->
+        <div class="contenido-combo">
+          <span class="icono-redondo"><i class='bx bx-cut'></i></span>
+          <h3 class="nombre-combo">Nutrición Animal</h3>
+          <!-- Texto de prueba exacto de la imagen -->
+          <p class="descripcion-combo">Gqilzameasea on esa selendoo</p>
+          <a href="/categoria/nutricion" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+      </article>
+
+      <!-- TARJETA 2: Salud y Bienestar -->
+      <article class="tarjeta-combo" style="background-image: url('./img/Salud\ y\ bienestar.jpg');">
+        <div class="sombra-oscura"></div>
+        
+        <div class="contenido-combo">
+          <span class="icono-redondo"><i class='bx bx-pulse'></i></span>
+          <h3 class="nombre-combo">Salud y Bienestar</h3>
+          <p class="descripcion-combo">Mlalmodmentes y caxidines neinoonrattos y anlirrds</p>
+          <a href="/categoria/salud" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+      </article>
+
+      <!-- TARJETA 3: Equipos Agrícolas -->
+      <article class="tarjeta-combo" style="background-image: url('./img/Equipos\ agricolas.jpg');">
+        <div class="sombra-oscura"></div>
+        
+        <div class="contenido-combo">
+          <span class="icono-redondo"><i class='bx bx-shape-square'></i></span>
+          <h3 class="nombre-combo">Equipos Agrícolas</h3>
+          <p class="descripcion-combo">Fronrramentes que se ocancao asolvlzntes aol catngoa.</p>
+          <a href="/categoria/equipos" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+      </article>
+
+      <!-- TARJETA 4: Semillas y Fertilizantes -->
+      <article class="tarjeta-combo" style="background-image: url('./img/Semillas\ y\ Fertilizantes.jpg');">
+        <div class="sombra-oscura"></div>
+        
+        <div class="contenido-combo">
+          <span class="icono-redondo"><i class='bx bx-spa'></i></span>
+          <h3 class="nombre-combo">Semillas y Fertilizantes</h3>
+          <p class="descripcion-combo">Ratinésè pzra tus cqdlogo.</p>
+          <a href="/categoria/semillas" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+    <script src="index.js"></script>
 </body>
 </html>
