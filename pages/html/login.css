@@ -22,14 +22,14 @@ body{
     color: var(--texto-oscuro);
     min-height: 100vh;
 }
-.login-container{
+.login-container{                                              /*contenedor*/
     min-height: 100vh;
     display: flex;
-    justify-content: center;      /*  centro mis datos */
-    align-items: center;          /*  puso  mis datos en el centro de la pagina */
+    justify-content: center;                                   /*  centro mis datos */
+    align-items: center;                                       /*  puso  mis datos en el centro de la pagina */
     padding: 40px 30px;
 }
-.login-card{
+.login-card{                                /*tarjetas*/
     /* width: 100%; */
     max-width: 780px;
     background: var(--blanco-puro);
@@ -142,8 +142,22 @@ input::placeholder {
     text-decoration: underline;
 }
 
+.logito {                                                 /*logo*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 45px; 
+}
+.logito img {
+    width: 330px;
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+
+}
+
 /* resposive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .login-card {
         padding: 45px 35px;
     }
