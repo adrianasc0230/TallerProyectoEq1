@@ -16,10 +16,10 @@
         --radio: 8px;
         --sombra: 0 10px 35px rgba(0,0,0,0.08);
 }
-body {
+body {                                                  
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--blanco-puro)
-    color: var(var(--verde-agro));
+    background: var(--blanco-puro);
+    color: var(--verde-agro);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -41,7 +41,7 @@ body {
     background: var(--blanco-puro);
     box-shadow: 0 3px 15px var(--verde-agro); 
 }
-h1{                                                          /*crea tu cuenta*/
+h1{                                                          /*crea tu cuenta titulo y subtitulo*/
     text-align: center;
     font-size: 50px;
     line-height: 1.1;
@@ -53,7 +53,7 @@ h1{                                                          /*crea tu cuenta*/
     font-size: 20px;
     margin-bottom: 40px;
 }
-.campo {
+.campo {                                          /*campos para diligenciar*/
     margin-bottom: 25px;
 }
 
@@ -76,13 +76,14 @@ h1{                                                          /*crea tu cuenta*/
     transition: 0.2s;
 }
 .campo input::placeholder {
-    color: var(--gris-texto);
+    color: var(--gris);
+    font-size: 15px;
 }
 .campo input:focus {
     border-color: var(--azul-noche);
     box-shadow: 0 0 0 2 var(--gris);
 }
-.password-box {
+.password-box {                          /*contraseña */
     position: relative;
 }
 
@@ -96,8 +97,82 @@ h1{                                                          /*crea tu cuenta*/
     top: 50%;
     transform: translateY(-50%);
     border: none;
-    background: transparent;
     cursor: pointer;
     font-size: 20px;
     color: var(--azul-noche);
 }
+.btn-crear {                              /*boton*/
+    width: 100%;                          /*el ancho*/
+    height: 62px;                         /*lo alto*/
+    /*margin-top: 1px;*/
+    border: none;
+    border-radius: 12px;
+    background: var(--borde);             /*color fondo cuadro*/
+    color: var(--azul-noche);
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer; 
+    /* transition: 0.5s; */
+}
+
+.btn-crear:hover {
+    background: #a8e6cf;                  /*cambia el color*/
+} 
+
+
+.icono-logo img{                                         /*logo*/
+    width: 250%;     
+    max-width: 50%;
+    height: auto;
+    object-fit:fill;                                  
+    display:flow-root,
+} 
+.logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 25px;
+} 
+
+.icono-logo {
+    width: 380px;
+    height: 64px;
+    border: 3px solid var(--borde);
+    border-radius: 16px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;  
+} 
+
+.nombre-logo {
+    text-align: left;
+}
+
+.nombre-logo h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/*ya tienes cuenta*/
+.login {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 17px;
+    color: var(--azul-noche);
+}
+
+.login a {
+    color: var(--borde);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+
+____________ 
