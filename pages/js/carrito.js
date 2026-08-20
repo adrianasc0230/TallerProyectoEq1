@@ -1,3 +1,5 @@
+// carrito independiente, para su uso en todas las páginas
+
 const RUTA_ESTRELLA_CARRITO = 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2z';
  
 class CarritoDrawer extends HTMLElement {
