@@ -1,135 +1,340 @@
-const API_URL = 'https://6a7d0561f8b2ed99ca4dc907.mockapi.io/productos';
+const URL_API = 'https://6a7d0561f8b2ed99ca4dc907.mockapi.io/productos';
  
 document.addEventListener('DOMContentLoaded', () => {
  
   /* ---------- Estado ---------- */
-  let allProducts = []; // todos los productos de la API
+  let todosLosProductos = [];   // productos traídos de la API
+  let productoActual    = null; // producto que se muestra como principal
+  let cantidadSeleccionada = 1;
  
-  /* ---------- Referencias al DOM (todas dentro de <main>) ---------- */
-  const els = {
-    rutaActual: document.getElementById('rutaActual'),
-    mainImage:  document.getElementById('mainImage'),
-    thumbs:     document.getElementById('thumbs'),
-    eyebrow:    document.getElementById('pEyebrow'),
-    title:      document.getElementById('pTitle'),
-    stars:      document.getElementById('pStars'),
-    reviewCount:document.getElementById('pReviewCount'),
-    price:      document.getElementById('pPrice'),
-    desc:       document.getElementById('pDesc'),
-    specsTable: document.getElementById('specsTable'),
-    relatedGrid:document.getElementById('relatedGrid'),
+  /* ---------- Referencias al DOM ---------- */
+  const el = {
+    rutaActual:       document.getElementById('rutaActual'),
+    mainImage:        document.getElementById('mainImage'),
+    thumbs:           document.getElementById('thumbs'),
+    eyebrow:          document.getElementById('pEyebrow'),
+    titulo:           document.getElementById('pTitle'),
+    estrellas:        document.getElementById('pStars'),
+    numeroResenas:    document.getElementById('pReviewCount'),
+    precio:           document.getElementById('pPrice'),
+    descripcion:      document.getElementById('pDesc'),
+    tablaEspecs:      document.getElementById('specsTable'),
+    gridRelacionados: document.getElementById('relatedGrid'),
+    cantidadValor:    document.getElementById('qtyValue'),
+    btnDisminuir:     document.getElementById('btnDisminuir'),
+    btnAumentar:      document.getElementById('btnAumentar'),
+    btnAgregar:       document.getElementById('btnAgregarCarrito'),
+    btnComprar:       document.getElementById('btnComprarAhora'),
+    toast:            document.getElementById('toast'),
+    toastTexto:       document.getElementById('toastTexto'),
+    carritoOverlay:   document.getElementById('carritoOverlay'),
+    carritoDrawer:    document.getElementById('carritoDrawer'),
+    carritoLista:     document.getElementById('carritoLista'),
+    carritoTotal:     document.getElementById('carritoTotal'),
+    btnCerrarCarrito: document.getElementById('btnCerrarCarrito'),
+    btnIrPagar:       document.getElementById('btnIrPagar'),
   };
  
-  const STAR_PATH = 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2z';
+  const RUTA_ESTRELLA = 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2z';
  
   /* ---------- Utilidades ---------- */
  
-  function formatPrice(value, moneda){
-    const formatted = Number(value).toLocaleString('es-CO');
-    return `$${formatted} ${moneda || 'COP'}`;
+  function formatearPrecio(valor, moneda){
+    const formateado = Number(valor).toLocaleString('es-CO');
+    return `$${formateado} ${moneda || 'COP'}`;
   }
  
-  function starsSVG(count, size = 15){
+  function generarEstrellas(cantidad, tamano = 15){
     let html = '';
     for(let i = 0; i < 5; i++){
-      const filled = i < count;
-      html += filled
-        ? `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="currentColor"><path d="${STAR_PATH}"/></svg>`
-        : `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.5"><path d="${STAR_PATH}"/></svg>`;
+      const llena = i < cantidad;
+      html += llena
+        ? `<svg viewBox="0 0 24 24" width="${tamano}" height="${tamano}" fill="currentColor"><path d="${RUTA_ESTRELLA}"/></svg>`
+        : `<svg viewBox="0 0 24 24" width="${tamano}" height="${tamano}" fill="none" stroke="currentColor" stroke-width="1.5"><path d="${RUTA_ESTRELLA}"/></svg>`;
     }
     return html;
   }
  
-  /* ---------- Carga de datos desde la API ---------- */
+  /* ---------- Contador del carrito (dentro del Shadow DOM de <header-agro>) ---------- */
  
-  async function fetchProducts(){
-    const response = await fetch(API_URL);
-    if(!response.ok){
-      throw new Error(`Error ${response.status} al consultar la API`);
+  function obtenerElementoContador(){
+    const header = document.querySelector('header-agro');
+    if(header && header.shadowRoot){
+      return header.shadowRoot.querySelector('.notificacion-campanazo');
     }
-    return response.json();
+    return null;
   }
  
-  async function init(){
+  /* ---------- Carrito (localStorage) ---------- */
+ 
+  function obtenerCarrito(){
+    return JSON.parse(localStorage.getItem('carrito')) || [];
+  }
+ 
+  function guardarCarrito(carrito){
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+ 
+  function agregarAlCarrito(producto, cantidad){
+    const carrito = obtenerCarrito();
+    const existente = carrito.find(item => item.id === producto.id);
+ 
+    if(existente){
+      existente.cantidad += cantidad;
+    } else {
+      carrito.push({
+        id: producto.id,
+        nombre: producto.nombre,
+        precio: producto.precio,
+        imagen: producto.imagen,
+        cantidad: cantidad,
+      });
+    }
+ 
+    guardarCarrito(carrito);
+ 
+    actualizarContadorCarrito();
+    renderizarCarritoDrawer();
+    mostrarToast(`${producto.nombre} agregado al carrito (${cantidad})`);
+  }
+ 
+  function cambiarCantidadItemCarrito(id, delta){
+    const carrito = obtenerCarrito();
+    const item = carrito.find(i => i.id === id);
+    if(!item) return;
+ 
+    item.cantidad += delta;
+ 
+    if(item.cantidad <= 0){
+      eliminarDelCarrito(id);
+      return;
+    }
+ 
+    guardarCarrito(carrito);
+    actualizarContadorCarrito();
+    renderizarCarritoDrawer();
+  }
+ 
+  function eliminarDelCarrito(id){
+    const carrito = obtenerCarrito().filter(item => item.id !== id);
+    guardarCarrito(carrito);
+    actualizarContadorCarrito();
+    renderizarCarritoDrawer();
+  }
+ 
+  function calcularTotalCarrito(carrito){
+    return carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+  }
+ 
+  /* ---------- Drawer del carrito ---------- */
+ 
+  function abrirCarrito(){
+    renderizarCarritoDrawer();
+    el.carritoDrawer.classList.add('show');
+    el.carritoOverlay.classList.add('show');
+  }
+ 
+  function cerrarCarrito(){
+    el.carritoDrawer.classList.remove('show');
+    el.carritoOverlay.classList.remove('show');
+  }
+ 
+  function renderizarCarritoDrawer(){
+    const carrito = obtenerCarrito();
+ 
+    if(carrito.length === 0){
+      el.carritoLista.innerHTML = `<p class="carrito-vacio">Tu carrito está vacío</p>`;
+    } else {
+      el.carritoLista.innerHTML = carrito.map(item => `
+        <div class="carrito-item" data-id="${item.id}">
+          <img src="${item.imagen}" alt="${item.nombre}">
+          <div>
+            <p class="carrito-item-nombre">${item.nombre}</p>
+            <p class="carrito-item-precio">${formatearPrecio(item.precio)}</p>
+            <div class="carrito-item-qty">
+              <button type="button" class="carrito-restar" data-id="${item.id}" aria-label="Restar">−</button>
+              <span>${item.cantidad}</span>
+              <button type="button" class="carrito-sumar" data-id="${item.id}" aria-label="Sumar">+</button>
+            </div>
+          </div>
+          <button type="button" class="carrito-eliminar" data-id="${item.id}" aria-label="Eliminar producto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+          </button>
+        </div>
+      `).join('');
+ 
+      el.carritoLista.querySelectorAll('.carrito-sumar').forEach(btn => {
+        btn.addEventListener('click', () => cambiarCantidadItemCarrito(Number(btn.dataset.id), 1));
+      });
+      el.carritoLista.querySelectorAll('.carrito-restar').forEach(btn => {
+        btn.addEventListener('click', () => cambiarCantidadItemCarrito(Number(btn.dataset.id), -1));
+      });
+      el.carritoLista.querySelectorAll('.carrito-eliminar').forEach(btn => {
+        btn.addEventListener('click', () => eliminarDelCarrito(Number(btn.dataset.id)));
+      });
+    }
+ 
+    el.carritoTotal.textContent = formatearPrecio(calcularTotalCarrito(carrito));
+  }
+ 
+  el.btnCerrarCarrito.addEventListener('click', cerrarCarrito);
+  el.carritoOverlay.addEventListener('click', cerrarCarrito);
+  el.btnIrPagar.addEventListener('click', () => {
+    mostrarToast('Redirigiendo al checkout...');
+  });
+ 
+  function conectarBotonCarritoDelHeader(){
+    const header = document.querySelector('header-agro');
+    if(!header || !header.shadowRoot) return;
+ 
+    const linkCarrito = header.shadowRoot.querySelector('.el-canasto');
+    if(linkCarrito){
+      linkCarrito.addEventListener('click', (evento) => {
+        evento.preventDefault();
+        abrirCarrito();
+      });
+    }
+  }
+ 
+  function actualizarContadorCarrito(){
+    const contador = obtenerElementoContador();
+    if(!contador) return; // el header aún no está listo en el DOM
+ 
+    const carrito = obtenerCarrito();
+    const totalUnidades = carrito.reduce((total, item) => total + item.cantidad, 0);
+    contador.textContent = totalUnidades;
+  }
+ 
+  function mostrarToast(mensaje){
+    el.toastTexto.textContent = mensaje;
+    el.toast.classList.add('show');
+    clearTimeout(mostrarToast._temporizador);
+    mostrarToast._temporizador = setTimeout(() => {
+      el.toast.classList.remove('show');
+    }, 2200);
+  }
+ 
+  /* ---------- Selector de cantidad ---------- */
+ 
+  function cambiarCantidad(delta){
+    cantidadSeleccionada = Math.max(1, cantidadSeleccionada + delta);
+    el.cantidadValor.textContent = cantidadSeleccionada;
+  }
+ 
+  el.btnDisminuir.addEventListener('click', () => cambiarCantidad(-1));
+  el.btnAumentar.addEventListener('click', () => cambiarCantidad(1));
+ 
+  el.btnAgregar.addEventListener('click', () => {
+    if(productoActual) agregarAlCarrito(productoActual, cantidadSeleccionada);
+  });
+ 
+  el.btnComprar.addEventListener('click', () => {
+    if(!productoActual) return;
+    agregarAlCarrito(productoActual, cantidadSeleccionada);
+    mostrarToast('Redirigiendo al checkout...');
+  });
+ 
+  /* ---------- Carga de datos desde la API ---------- */
+ 
+  async function obtenerProductos(){
+    const respuesta = await fetch(URL_API);
+    if(!respuesta.ok){
+      throw new Error(`Error ${respuesta.status} al consultar la API`);
+    }
+    return respuesta.json();
+  }
+ 
+  async function iniciar(){
+    actualizarContadorCarrito(); // refleja lo que ya estaba guardado en localStorage
+    conectarBotonCarritoDelHeader();
+ 
     try {
-      allProducts = await fetchProducts();
+      todosLosProductos = await obtenerProductos();
  
-      // Producto principal: buscamos el suplemento lechero; si no existe, usamos el primero disponible
-      const featured = allProducts.find(p => p.nombre.toLowerCase().includes('lechero'))
-        || allProducts[0];
+      const destacado = todosLosProductos.find(p => p.nombre.toLowerCase().includes('lechero'))
+        || todosLosProductos[0];
  
-      if(!featured){
+      if(!destacado){
         throw new Error('No hay productos disponibles en la API');
       }
  
-      renderMainProduct(featured);
-      renderRelatedProducts(featured);
+      renderizarProductoPrincipal(destacado);
+      renderizarRelacionados(destacado);
  
-    } catch (err){
-      console.error(err);
-      els.title.textContent = 'No se pudo cargar el producto';
-      els.desc.textContent = 'Ocurrió un problema al conectar con la API. Intenta recargar la página.';
-      els.eyebrow.textContent = 'Error';
-      els.price.textContent = '—';
+    } catch (error){
+      console.error(error);
+      el.titulo.textContent = 'No se pudo cargar el producto';
+      el.descripcion.textContent = 'Ocurrió un problema al conectar con la API. Intenta recargar la página.';
+      el.eyebrow.textContent = 'Error';
+      el.precio.textContent = '—';
     }
   }
  
   /* ---------- Render: producto principal ---------- */
  
-  function renderMainProduct(product){
-    document.title = `${product.nombre} | Agroanima`;
-    els.rutaActual.textContent = product.nombre;
+  function renderizarProductoPrincipal(producto){
+    productoActual = producto;
+    cantidadSeleccionada = 1;
+    el.cantidadValor.textContent = cantidadSeleccionada;
  
-    els.eyebrow.textContent = product.categoria;
-    els.title.textContent = product.nombre;
-    els.desc.textContent = product.descripcion;
-    els.price.textContent = formatPrice(product.precio, product.moneda);
+    document.title = `${producto.nombre} | Agroanima`;
+    el.rutaActual.textContent = producto.nombre;
  
-    els.stars.innerHTML = starsSVG(product.calificacion, 15);
-    els.reviewCount.textContent = `(${product.numeroResenas} valoraciones de clientes)`;
+    el.eyebrow.textContent = producto.categoria;
+    el.titulo.textContent = producto.nombre;
+    el.descripcion.textContent = producto.descripcion;
+    el.precio.textContent = formatearPrecio(producto.precio, producto.moneda);
  
-    els.mainImage.src = product.imagen;
-    els.mainImage.alt = product.nombre;
+    el.estrellas.innerHTML = generarEstrellas(producto.calificacion, 15);
+    el.numeroResenas.textContent = `(${producto.numeroResenas} valoraciones de clientes)`;
  
-    renderSpecs(product);
-    renderThumbs(product);
+    el.mainImage.src = producto.imagen;
+    el.mainImage.alt = producto.nombre;
+ 
+    renderizarEspecificaciones(producto);
+    renderizarMiniaturas(producto);
+ 
+    const disponible = producto.disponible && producto.stock > 0;
+    el.btnAgregar.disabled = !disponible;
+    el.btnComprar.disabled = !disponible;
+    el.btnAgregar.style.opacity = disponible ? '1' : '.5';
+    el.btnComprar.style.opacity = disponible ? '1' : '.5';
   }
  
-  function renderSpecs(product){
-    const rows = [
-      { label: 'Categoría',        value: product.categoria },
-      { label: 'Precio',           value: formatPrice(product.precio, product.moneda) },
-      { label: 'Calificación',     value: `${product.calificacion} / 5` },
-      { label: 'Stock disponible', value: `${product.stock} unidades` },
-      { label: 'Disponibilidad',   value: product.disponible ? 'Disponible' : 'Agotado' },
+  function renderizarEspecificaciones(producto){
+    const filas = [
+      { etiqueta: 'Categoría',        valor: producto.categoria },
+      { etiqueta: 'Precio',           valor: formatearPrecio(producto.precio, producto.moneda) },
+      { etiqueta: 'Calificación',     valor: `${producto.calificacion} / 5` },
+      { etiqueta: 'Stock disponible', valor: `${producto.stock} unidades` },
+      { etiqueta: 'Disponibilidad',   valor: producto.disponible ? 'Disponible' : 'Agotado' },
     ];
  
-    els.specsTable.innerHTML = rows.map(row => `
+    el.tablaEspecs.innerHTML = filas.map(fila => `
       <div class="specs-row">
-        <div class="label">${row.label}</div>
-        <div class="value">${row.value}</div>
+        <div class="label">${fila.etiqueta}</div>
+        <div class="value">${fila.valor}</div>
       </div>
     `).join('');
   }
  
-  function renderThumbs(product){
-    // Usamos el producto actual + otros productos de la misma categoría como miniaturas navegables
-    const sameCategory = allProducts.filter(p => p.categoria === product.categoria && p.id !== product.id);
-    const gallery = [product, ...sameCategory].slice(0, 4);
+  function renderizarMiniaturas(producto){
+    const mismaCategoria = todosLosProductos.filter(p => p.categoria === producto.categoria && p.id !== producto.id);
+    const galeria = [producto, ...mismaCategoria].slice(0, 4);
  
-    els.thumbs.innerHTML = gallery.map(p => `
-      <div class="thumb ${p.id === product.id ? 'active' : ''}" data-id="${p.id}" title="${p.nombre}">
+    el.thumbs.innerHTML = galeria.map(p => `
+      <div class="thumb ${p.id === producto.id ? 'active' : ''}" data-id="${p.id}" title="${p.nombre}">
         <img src="${p.imagen}" alt="${p.nombre}">
       </div>
     `).join('');
  
-    els.thumbs.querySelectorAll('.thumb').forEach(thumbEl => {
-      thumbEl.addEventListener('click', () => {
-        const id = Number(thumbEl.dataset.id);
-        const selected = allProducts.find(p => p.id === id);
-        if(selected){
-          renderMainProduct(selected);
-          renderRelatedProducts(selected);
+    el.thumbs.querySelectorAll('.thumb').forEach(miniatura => {
+      miniatura.addEventListener('click', () => {
+        const id = Number(miniatura.dataset.id);
+        const seleccionado = todosLosProductos.find(p => p.id === id);
+        if(seleccionado){
+          renderizarProductoPrincipal(seleccionado);
+          renderizarRelacionados(seleccionado);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
@@ -138,44 +343,42 @@ document.addEventListener('DOMContentLoaded', () => {
  
   /* ---------- Render: productos relacionados ---------- */
  
-  function renderRelatedProducts(product){
-    const related = allProducts
-      .filter(p => p.categoria === product.categoria && p.id !== product.id)
+  function renderizarRelacionados(producto){
+    const relacionados = todosLosProductos
+      .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
       .slice(0, 3);
  
-    // si no hay suficientes de la misma categoría, completamos con otros productos
-    if(related.length < 3){
-      const extra = allProducts
-        .filter(p => p.id !== product.id && !related.includes(p))
-        .slice(0, 3 - related.length);
-      related.push(...extra);
+    if(relacionados.length < 3){
+      const extra = todosLosProductos
+        .filter(p => p.id !== producto.id && !relacionados.includes(p))
+        .slice(0, 3 - relacionados.length);
+      relacionados.push(...extra);
     }
  
-    els.relatedGrid.innerHTML = related.map(p => `
+    el.gridRelacionados.innerHTML = relacionados.map(p => `
       <div class="card" data-id="${p.id}">
         <div class="card-img"><img src="${p.imagen}" alt="${p.nombre}"></div>
         <div class="card-body">
           <div class="card-eyebrow">${p.categoria}</div>
           <div class="card-title">${p.nombre}</div>
           <div class="card-stars">
-            <span class="stars">${starsSVG(p.calificacion, 12)}</span>
+            <span class="stars">${generarEstrellas(p.calificacion, 12)}</span>
             <span class="count">(${p.numeroResenas})</span>
           </div>
           <div class="card-foot">
-            <span class="card-price">${formatPrice(p.precio, p.moneda)}</span>
+            <span class="card-price">${formatearPrecio(p.precio, p.moneda)}</span>
           </div>
         </div>
       </div>
     `).join('');
  
-    // Clic en la tarjeta
-    els.relatedGrid.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', () => {
-        const id = Number(card.dataset.id);
-        const selected = allProducts.find(p => p.id === id);
-        if(selected){
-          renderMainProduct(selected);
-          renderRelatedProducts(selected);
+    el.gridRelacionados.querySelectorAll('.card').forEach(tarjeta => {
+      tarjeta.addEventListener('click', () => {
+        const id = Number(tarjeta.dataset.id);
+        const seleccionado = todosLosProductos.find(p => p.id === id);
+        if(seleccionado){
+          renderizarProductoPrincipal(seleccionado);
+          renderizarRelacionados(seleccionado);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
@@ -183,6 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
  
   /* ---------- Arranque ---------- */
-  init();
+  iniciar();
  
 });
