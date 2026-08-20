@@ -78,6 +78,19 @@ class HeaderAgro extends HTMLElement {
         link.classList.add("la-propia");
       }
     });
+
+    const formularioBuscador = wrapper.querySelector("#formulario-cazador");
+    const campoBusqueda = wrapper.querySelector("#campo-busqueda");
+
+    formularioBuscador.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      const loQueBusco = campoBusqueda.value.trim();
+      if (loQueBusco !== "") {
+        window.location.href = `/pages/html/catalogo.html?filter=${encodeURIComponent(loQueBusco)}`;
+      } else {
+        console.log("El compa no escribió nada para buscar.");
+      }
+    });
   }
 }
 
