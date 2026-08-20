@@ -12,8 +12,15 @@
     <script src="/components/footer/FooterAgro.js" defer></script>
     <link rel="stylesheet" href="/components/footer/footer-agro.css" />
     <link rel="stylesheet" href="../css/catalogo.css" />
+
+    <script src="/components/header/HeaderAgro.js" defer></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
   </head>
   <body>
+
+    <header-agro pagina="catalogo"></header-agro>
+
     <main>
       <div class="sub-header">
         <nav class="breadcrumb">
@@ -86,55 +93,8 @@
       </div>
     </main>
 
-    <!-- <footer-agro></footer-agro> -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-logo">
-          <img
-            src="/img/logoverticalletras blancas.png"
-            alt="Agroanima Logo Vertical"
-          />
-          <div class="footer-social">
-            <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-youtube"></i></a>
-            <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-x-twitter"></i></a>
-          </div>
-        </div>
-
-        <div class="footer-section">
-          <h3>Categorías</h3>
-          <ul>
-            <li><a>Nutrición Animal</a></li>
-            <li><a>Salud y Bienestar</a></li>
-            <li><a>Equipos Agrícolas</a></li>
-            <li><a>Semillas y Fertilizantes</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>Compañía</h3>
-          <ul>
-            <li><a>Sobre Nosotros</a></li>
-            <li><a>Contacto</a></li>
-            <li><a>Blog</a></li>
-            <li><a>Sostenibilidad</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>Contacto</h3>
-          <ul>
-            <li><i class="fas fa-phone-alt"></i> +57 (312) 456-7890</li>
-            <li><i class="fas fa-envelope"></i> contacto@agroanima.com</li>
-            <li>
-              <i class="fas fa-map-marker-alt"></i> Bogotá, Colombia –
-              Distribución Nacional
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+    <footer-agro id="footer-contacto"></footer-agro>
+    
     <script src="../js/catalogo.js"></script>
   </body>
 </html>
