@@ -6,7 +6,7 @@
 
     <title>Crear Cuenta - Agroanima Colombia</title>
 
-    <link rel="stylesheet" href="registro.css">
+    <link rel="stylesheet" href="../css/registro.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
             <div class="logo">
                 <div class="icono-logo">
                     <img src="../../img/logohorizontalletrasazules.png" alt="Agroanima Colombia">
-                    <span>×</span>
+                    <span></span>
                 </div>
                 <div class="nombre-logo">
                     <h2>AGROANIMA COLOMBIA</h2>                                                      <!-- Título principal-->
@@ -95,18 +95,7 @@
             </p>
         </section>
     </main>
-    <script>                                                                                     <!--funcion ojito dde visibilidad de contraseña-->
-        function mostrarPassword(id, boton) {
-            const input = document.getElementById(id);
-            if (input.type === "password") {
-                input.type = "text";
-                boton.textContent = "◉";
-            } else {
-                input.type = "password";
-                boton.textContent = "◉";
-            }
-        }
-    </script>
+    <script src="../js/registro.js"></script>
 </body>
 
 </html>

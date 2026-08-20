@@ -31,7 +31,7 @@ body {
     max-width: 850px;
     display: flex;
     justify-content: center;
-}
+} 
 .registro {
     width: 100%;
     max-width: 700px;
@@ -52,7 +52,7 @@ h1{                                                          /*crea tu cuenta ti
     color: var(--gris-texto);
     font-size: 20px;
     margin-bottom: 40px;
-}
+} 
 .campo {                                          /*campos para diligenciar*/
     margin-bottom: 25px;
 }
@@ -88,7 +88,7 @@ h1{                                                          /*crea tu cuenta ti
 }
 
 .password-box input {
-    padding-right: 60px;
+    padding-right: 60px; 
 }
 
 .ver-password {
@@ -121,11 +121,11 @@ h1{                                                          /*crea tu cuenta ti
 
 
 .icono-logo img{                                         /*logo*/
-    width: 250%;     
-    max-width: 50%;
+    width: 100%;     
+    max-width: 100%;
     height: auto;
-    object-fit:fill;                                  
-    display:flow-root,
+    object-fit:contain;                              
+    display: block;
 } 
 .logo {
     width: 100%;
@@ -175,4 +175,50 @@ h1{                                                          /*crea tu cuenta ti
     text-decoration: underline;
 }
 
-____________ 
+@media (max-width: 700px) {
+    body {
+        padding: 15px;
+    }
+    .registro {
+        padding: 40px 25px 35px;
+        border-radius: 14px;
+    }
+    .logo {
+        gap: 12px;
+    }
+    .icono-logo {
+        width: 52px;
+        height: 52px;
+    }
+    .icono-logo::before {
+        width: 28px;
+        height: 28px;
+    }
+    .nombre-logo h2 {
+        font-size: 18px;
+    }
+    .nombre-logo p {
+        font-size: 11px;
+    }
+    h1 {
+        font-size: 38px;
+    }
+    .subtitulo {
+        font-size: 16px;
+        margin-bottom: 35px;
+    }
+    .campo label {
+        font-size: 16px;
+    }
+    .campo input {
+        height: 52px;
+        font-size: 16px;
+    }
+    .btn-crear {
+        height: 55px;
+        font-size: 17px;
+    }
+}
+
+
+
