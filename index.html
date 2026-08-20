@@ -9,16 +9,16 @@
 </head>
 <body>
 
-<header class="techo-del-rancho">
+<header class="techo-del-rancho" id="techo-principal">
 
   
   <div class="cinta-cazadora">
     <div class="contenedor-tinto">
 
       
-      <form class="buscador-avispado" action="/buscar" method="GET">
+      <form class="buscador-avispado" id="formulario-cazador">
         <i class="icono-lupa-firme"></i>
-        <input type="text" name="q" placeholder="Buscar productos..." aria-label="Buscar productos">
+        <input type="text" id="campo-busqueda" name="q" placeholder="Buscar productos..." aria-label="Buscar productos">
       </form>
 
      
@@ -28,7 +28,7 @@
         </a>
         <span class="plata-lucas">COP</span>
       </div>
-
+<!-- hola 2-->
     </div>
   </div>
 
@@ -42,12 +42,11 @@
         </a>
       </div>
 
-      <ul class="rutas-del-parche">
+      <ul class="rutas-del-parche" id="techo-principal">
         <li><a href="/" class="la-propia">Inicio</a></li>
         <li><a href="/pages/html/catalogo.html">Catálogo</a></li>
         <li><a href="/nutricion">Nutrición</a></li>
         <li><a href="/salud">Salud</a></li>
-        <li><a href="/equipos">Equipos</a></li>
         <li><a href="/contacto">Contacto</a></li>
       </ul>
 
@@ -107,9 +106,7 @@
 </section>
 
 
-<!-- =========================================
-     SECCIÓN: NUESTRAS CATEGORÍAS
-     ========================================= -->
+<!--  SECCIÓN: NUESTRAS CATEGORÍAS -->
 <section class="los-combos-del-campo">
   <div class="contenedor-seccion">
     
@@ -177,6 +174,35 @@
 </section>
 
 
+
+<!-- SECCIÓN: PRODUCTOS DESTACADOS-->
+<section class="lo-mas-melo">
+  <div class="contenedor-seccion">
+    
+    <div class="encabezado-del-parche">
+      <h2 class="titulo-firme">Productos Destacados</h2>
+      <p class="la-carreta-suave">Lo más renicido y recomendada por nuestros espaníes agrececeerios</p>
+    </div>
+
+    <!-- 1. AQUÍ ESTÁ LA CLAVE: Agregamos el id="vitrina-dinamica" y dejamos el div VACÍO -->
+    <div class="vitrina-productos" id="vitrina-dinamica">
+      <!-- Las tarjetas se cargarán aquí por arte de magia (JavaScript) -->
+    </div>
+
+    <!-- Puntos indicadores de paginación (abajo) -->
+    <div class="bolitas-guia" aria-label="Controles de página">
+      <span class="bolita-activa"></span>
+      <span class="bolita-dormida"></span>
+    </div>
+
+  </div>
+</section>
+
+
+
     <script src="index.js"></script>
 </body>
 </html>
+
+
+
