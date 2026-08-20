@@ -3,8 +3,8 @@ const URL_API = 'https://6a7d0561f8b2ed99ca4dc907.mockapi.io/productos';
 document.addEventListener('DOMContentLoaded', () => {
  
   /* ---------- Estado ---------- */
-  let todosLosProductos = [];   // productos traídos de la API
-  let productoActual    = null; // producto que se muestra como principal
+  let todosLosProductos = [];
+  let productoActual    = null;
   let cantidadSeleccionada = 1;
  
   /* ---------- Referencias al DOM ---------- */
@@ -25,14 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnAumentar:      document.getElementById('btnAumentar'),
     btnAgregar:       document.getElementById('btnAgregarCarrito'),
     btnComprar:       document.getElementById('btnComprarAhora'),
-    toast:            document.getElementById('toast'),
-    toastTexto:       document.getElementById('toastTexto'),
-    carritoOverlay:   document.getElementById('carritoOverlay'),
-    carritoDrawer:    document.getElementById('carritoDrawer'),
-    carritoLista:     document.getElementById('carritoLista'),
-    carritoTotal:     document.getElementById('carritoTotal'),
-    btnCerrarCarrito: document.getElementById('btnCerrarCarrito'),
-    btnIrPagar:       document.getElementById('btnIrPagar'),
   };
  
   const RUTA_ESTRELLA = 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2z';
@@ -55,165 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return html;
   }
  
-  /* ---------- Contador del carrito (dentro del Shadow DOM de <header-agro>) ---------- */
- 
-  function obtenerElementoContador(){
-    const header = document.querySelector('header-agro');
-    if(header && header.shadowRoot){
-      return header.shadowRoot.querySelector('.notificacion-campanazo');
-    }
-    return null;
-  }
- 
-  /* ---------- Carrito (localStorage) ---------- */
- 
-  function obtenerCarrito(){
-    return JSON.parse(localStorage.getItem('carrito')) || [];
-  }
- 
-  function guardarCarrito(carrito){
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-  }
- 
-  function agregarAlCarrito(producto, cantidad){
-    const carrito = obtenerCarrito();
-    const existente = carrito.find(item => item.id === producto.id);
- 
-    if(existente){
-      existente.cantidad += cantidad;
-    } else {
-      carrito.push({
-        id: producto.id,
-        nombre: producto.nombre,
-        precio: producto.precio,
-        imagen: producto.imagen,
-        cantidad: cantidad,
-      });
-    }
- 
-    guardarCarrito(carrito);
- 
-    actualizarContadorCarrito();
-    renderizarCarritoDrawer();
-    mostrarToast(`${producto.nombre} agregado al carrito (${cantidad})`);
-  }
- 
-  function cambiarCantidadItemCarrito(id, delta){
-    const carrito = obtenerCarrito();
-    const item = carrito.find(i => i.id === id);
-    if(!item) return;
- 
-    item.cantidad += delta;
- 
-    if(item.cantidad <= 0){
-      eliminarDelCarrito(id);
-      return;
-    }
- 
-    guardarCarrito(carrito);
-    actualizarContadorCarrito();
-    renderizarCarritoDrawer();
-  }
- 
-  function eliminarDelCarrito(id){
-    const carrito = obtenerCarrito().filter(item => item.id !== id);
-    guardarCarrito(carrito);
-    actualizarContadorCarrito();
-    renderizarCarritoDrawer();
-  }
- 
-  function calcularTotalCarrito(carrito){
-    return carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
-  }
- 
-  /* ---------- Drawer del carrito ---------- */
- 
-  function abrirCarrito(){
-    renderizarCarritoDrawer();
-    el.carritoDrawer.classList.add('show');
-    el.carritoOverlay.classList.add('show');
-  }
- 
-  function cerrarCarrito(){
-    el.carritoDrawer.classList.remove('show');
-    el.carritoOverlay.classList.remove('show');
-  }
- 
-  function renderizarCarritoDrawer(){
-    const carrito = obtenerCarrito();
- 
-    if(carrito.length === 0){
-      el.carritoLista.innerHTML = `<p class="carrito-vacio">Tu carrito está vacío</p>`;
-    } else {
-      el.carritoLista.innerHTML = carrito.map(item => `
-        <div class="carrito-item" data-id="${item.id}">
-          <img src="${item.imagen}" alt="${item.nombre}">
-          <div>
-            <p class="carrito-item-nombre">${item.nombre}</p>
-            <p class="carrito-item-precio">${formatearPrecio(item.precio)}</p>
-            <div class="carrito-item-qty">
-              <button type="button" class="carrito-restar" data-id="${item.id}" aria-label="Restar">−</button>
-              <span>${item.cantidad}</span>
-              <button type="button" class="carrito-sumar" data-id="${item.id}" aria-label="Sumar">+</button>
-            </div>
-          </div>
-          <button type="button" class="carrito-eliminar" data-id="${item.id}" aria-label="Eliminar producto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
-          </button>
-        </div>
-      `).join('');
- 
-      el.carritoLista.querySelectorAll('.carrito-sumar').forEach(btn => {
-        btn.addEventListener('click', () => cambiarCantidadItemCarrito(Number(btn.dataset.id), 1));
-      });
-      el.carritoLista.querySelectorAll('.carrito-restar').forEach(btn => {
-        btn.addEventListener('click', () => cambiarCantidadItemCarrito(Number(btn.dataset.id), -1));
-      });
-      el.carritoLista.querySelectorAll('.carrito-eliminar').forEach(btn => {
-        btn.addEventListener('click', () => eliminarDelCarrito(Number(btn.dataset.id)));
-      });
-    }
- 
-    el.carritoTotal.textContent = formatearPrecio(calcularTotalCarrito(carrito));
-  }
- 
-  el.btnCerrarCarrito.addEventListener('click', cerrarCarrito);
-  el.carritoOverlay.addEventListener('click', cerrarCarrito);
-  el.btnIrPagar.addEventListener('click', () => {
-    mostrarToast('Redirigiendo al checkout...');
-  });
- 
-  function conectarBotonCarritoDelHeader(){
-    const header = document.querySelector('header-agro');
-    if(!header || !header.shadowRoot) return;
- 
-    const linkCarrito = header.shadowRoot.querySelector('.el-canasto');
-    if(linkCarrito){
-      linkCarrito.addEventListener('click', (evento) => {
-        evento.preventDefault();
-        abrirCarrito();
-      });
-    }
-  }
- 
-  function actualizarContadorCarrito(){
-    const contador = obtenerElementoContador();
-    if(!contador) return; // el header aún no está listo en el DOM
- 
-    const carrito = obtenerCarrito();
-    const totalUnidades = carrito.reduce((total, item) => total + item.cantidad, 0);
-    contador.textContent = totalUnidades;
-  }
- 
-  function mostrarToast(mensaje){
-    el.toastTexto.textContent = mensaje;
-    el.toast.classList.add('show');
-    clearTimeout(mostrarToast._temporizador);
-    mostrarToast._temporizador = setTimeout(() => {
-      el.toast.classList.remove('show');
-    }, 2200);
-  }
- 
   /* ---------- Selector de cantidad ---------- */
  
   function cambiarCantidad(delta){
@@ -224,14 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
   el.btnDisminuir.addEventListener('click', () => cambiarCantidad(-1));
   el.btnAumentar.addEventListener('click', () => cambiarCantidad(1));
  
+  /* ---------- Carrito: delega en el componente <carrito-drawer> ---------- */
+ 
   el.btnAgregar.addEventListener('click', () => {
-    if(productoActual) agregarAlCarrito(productoActual, cantidadSeleccionada);
+    if(productoActual) window.agregarAlCarrito(productoActual, cantidadSeleccionada);
   });
  
   el.btnComprar.addEventListener('click', () => {
     if(!productoActual) return;
-    agregarAlCarrito(productoActual, cantidadSeleccionada);
-    mostrarToast('Redirigiendo al checkout...');
+    window.agregarAlCarrito(productoActual, cantidadSeleccionada);
+    window.mostrarToastCarrito('Redirigiendo al checkout...');
   });
  
   /* ---------- Carga de datos desde la API ---------- */
@@ -245,9 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
  
   async function iniciar(){
-    actualizarContadorCarrito(); // refleja lo que ya estaba guardado en localStorage
-    conectarBotonCarritoDelHeader();
- 
     try {
       todosLosProductos = await obtenerProductos();
  
