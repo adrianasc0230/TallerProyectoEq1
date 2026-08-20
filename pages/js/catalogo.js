@@ -4,7 +4,7 @@ let productos = [];
 
 const estado = {
   texto: "",
-  categorias: new Set(), // varias categorías pueden estar activas a la vez
+  categorias: new Set(), 
   soloDisponibles: false,
   precioMin: 0,
   precioMax: Infinity,
@@ -128,14 +128,13 @@ function renderPaginacion(totalPaginas) {
   paginacionEl.innerHTML = html;
 }
 
-// Buscador de texto
 inputBuscar.addEventListener("input", (e) => {
   estado.texto = e.target.value;
   estado.paginaActual = 1;
   renderProductos();
 });
 
-// Checkboxes de categoría y marca
+
 document.querySelector(".filtros").addEventListener("change", (e) => {
   const el = e.target;
 
@@ -164,7 +163,7 @@ document.querySelector(".filtros").addEventListener("change", (e) => {
   renderProductos();
 });
 
-// Clicks en la paginación (delegación de eventos)
+
 paginacionEl.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
   if (!btn || btn.disabled) return;
@@ -185,13 +184,9 @@ paginacionEl.addEventListener("click", (e) => {
   gridProductos.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
-// Clicks en "agregar al carrito" (delegación de eventos, porque las tarjetas se recrean)
-gridProductos.addEventListener("click", (e) => {
-  const btn = e.target.closest(".producto-agregar");
-  if (!btn) return;
 
-  const id = Number(btn.dataset.id);
-  const producto = productos.find((p) => p.id === id);
+gridProductos.addEventListener("click", (e) => {
+  //redirección detalle producto
   
 });
 

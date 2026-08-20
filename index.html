@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>AgroAnima</title>
+    <script src="/components/header/HeaderAgro.js" defer></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="/components/footer/FooterAgro.js" defer></script>
     <link
@@ -14,60 +15,8 @@
 </head>
 <body>
 
-<header class="techo-del-rancho" id="techo-principal">
 
-  
-  <div class="cinta-cazadora">
-    <div class="contenedor-tinto">
-
-      
-      <form class="buscador-avispado" id="formulario-cazador">
-        <i class="icono-lupa-firme"></i>
-        <input type="text" id="campo-busqueda" name="q" placeholder="Buscar productos..." aria-label="Buscar productos">
-      </form>
-
-     
-      <div class="opciones-de-una">
-        <a href="/perfil" class="perfil-parcero" aria-label="Perfil de usuario">
-          <i class="icono-compita"></i>
-        </a>
-        <span class="plata-lucas">COP</span>
-      </div>
-<!-- hola 2-->
-    </div>
-  </div>
-
-  
-  <nav class="brujula-principal">
-    <div class="contenedor-fino">
-
-      <div class="sello-grafico">
-        <a href="/">
-          <img src="./img/logohorizontalletrasazules.png" alt="Logo de AgroAnima Colombia">
-        </a>
-      </div>
-
-      <ul class="rutas-del-parche" id="techo-principal">
-        <li><a href="/" class="la-propia">Inicio</a></li>
-        <li><a href="/pages/html/catalogo.html">Catálogo</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
-
-      
-      <div class="movidas-rapidas">
-        <a href="./pages/html/login.html" class="enlace-pilo" aria-label="Iniciar sesión">
-          <i class='bx bx-user'></i></a>
-         <a href="./pages/html/detalle.html" class="el-canasto" aria-label="Ver carrito">
-          <i class='bx bx-cart'></i>
-         <span class="notificacion-campanazo">3</span>
-        </a>
-      </div>
-
-    </div>
-  </nav>
-
-</header>
-  
+  <header-agro pagina="inicio"></header-agro>
 
 
 <section class="el-potrero-principal">
@@ -196,7 +145,7 @@
   </div>
 </section>
 
-<footer-agro />
+<footer-agro id="footer-contacto"></footer-agro>
 
     <script src="index.js"></script>
 </body>
