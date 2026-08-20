@@ -21,22 +21,22 @@ class FooterAgro extends HTMLElement {
           <div class="footer-logo">
             <img src="/img/logoverticalletras blancas.png" alt="Agroanima Logo Vertical" />
             <div class="footer-social">
-              <a href="urlface"><i class="fab fa-facebook-f"></i></a>
-              <a href="urlinsta"><i class="fab fa-instagram"></i></a>
-              <a href="urlyt"><i class="fab fa-youtube"></i></a>
-              <a href="urltwi"><i class="fab fa-twitter"></i></a>
+              <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-instagram"></i></a>
+              <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-youtube"></i></a>
+              <a href="https://github.com/adrianasc0230/TallerProyectoEq1.git"><i class="fab fa-twitter"></i></a>
             </div>
           </div>
 
           <div class="footer-section">
-            <h3>Categorías</h3>
-            <ul>
-              <li><a>Nutrición Animal</a></li>
-              <li><a>Salud y Bienestar</a></li>
-              <li><a>Equipos Agrícolas</a></li>
-              <li><a>Semillas y Fertilizantes</a></li>
-            </ul>
-          </div>
+  <h3>Categorías</h3>
+  <ul>
+    <li><a href="/pages/html/catalogo.html?filter=Nutrición%20Animal">Nutrición Animal</a></li>
+    <li><a href="/pages/html/catalogo.html?filter=Salud%20y%20Bienestar">Salud y Bienestar</a></li>
+    <li><a href="/pages/html/catalogo.html?filter=Equipos%20Agrícolas">Equipos Agrícolas</a></li>
+    <li><a href="/pages/html/catalogo.html?filter=Semillas%20y%20Fertilizantes">Semillas y Fertilizantes</a></li>
+  </ul>
+</div>
 
           <div class="footer-section">
             <h3>Compañía</h3>
