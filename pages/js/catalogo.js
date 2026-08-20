@@ -4,20 +4,18 @@ let productos = [];
 
 const estado = {
   texto: "",
-  categorias: new Set(), // varias categorías pueden estar activas a la vez
+  categorias: new Set(),
   soloDisponibles: false,
   precioMin: 0,
   precioMax: Infinity,
   paginaActual: 1,
-  porPagina: 6,
+  porPagina: 3,
 };
-
 
 const gridProductos = document.getElementById("gridProductos");
 const paginacionEl = document.getElementById("paginacion");
 const inputBuscar = document.getElementById("inputBuscar");
 const filtroCategorias = document.getElementById("filtroCategorias");
-const carritoContador = document.getElementById("carritoContador");
 
 function inicializarFiltros() {
   const categoriasUnicas = [...new Set(productos.map((p) => p.categoria))];
@@ -41,16 +39,16 @@ function obtenerProductosFiltrados() {
   return productos.filter((p) => {
     const coincideTexto = p.nombre
       .toLowerCase()
-      .includes(estado.texto.toLowerCase());
+      .includes(estado.texto.toLowerCase()) || p.categoria
+      .toLowerCase()
+      .includes(estado.texto.toLowerCase()) ;
     const coincideCategoria =
       estado.categorias.size === 0 || estado.categorias.has(p.categoria);
-    const coincideDisponibilidad = !estado.soloDisponibles || p.disponible;
     const coincidePrecio =
       p.precio >= estado.precioMin && p.precio <= estado.precioMax;
     return (
       coincideTexto &&
       coincideCategoria &&
-      coincideDisponibilidad &&
       coincidePrecio
     );
   });
@@ -59,9 +57,9 @@ function obtenerProductosFiltrados() {
 function crearEstrellas(calificacionRating) {
   let html = "";
   for (let i = 1; i <= 5; i++) {
-    if(i <= calificacionRating){
+    if (i <= calificacionRating) {
       html += "★";
-    }else{
+    } else {
       html += `<span class="vacia">★</span>`;
     }
   }
@@ -128,25 +126,21 @@ function renderPaginacion(totalPaginas) {
   paginacionEl.innerHTML = html;
 }
 
-// Buscador de texto
 inputBuscar.addEventListener("input", (e) => {
   estado.texto = e.target.value;
   estado.paginaActual = 1;
   renderProductos();
 });
 
-// Checkboxes de categoría y marca
 document.querySelector(".filtros").addEventListener("change", (e) => {
   const el = e.target;
 
   if (el.dataset.tipo === "categoria") {
-    el.checked
-      ? estado.categorias.add(el.value)
-      : estado.categorias.delete(el.value);
-  }
-
-  if (el.id === "checkDisponibles") {
-    estado.soloDisponibles = el.checked;
+    if (el.checked) {
+      estado.categorias.add(el.value);
+    } else {
+      estado.categorias.delete(el.value);
+    }
   }
 
   if (el.name === "precio") {
@@ -164,10 +158,11 @@ document.querySelector(".filtros").addEventListener("change", (e) => {
   renderProductos();
 });
 
-// Clicks en la paginación (delegación de eventos)
 paginacionEl.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
-  if (!btn || btn.disabled) return;
+  if (!btn || btn.disabled) {
+    return;
+  }
 
   const valor = btn.dataset.pagina;
   const totalPaginas = Math.max(
@@ -175,26 +170,21 @@ paginacionEl.addEventListener("click", (e) => {
     Math.ceil(obtenerProductosFiltrados().length / estado.porPagina),
   );
 
-  if (valor === "anterior")
+  if (valor === "anterior") {
     estado.paginaActual = Math.max(1, estado.paginaActual - 1);
-  else if (valor === "siguiente")
+  } else if (valor === "siguiente") {
     estado.paginaActual = Math.min(totalPaginas, estado.paginaActual + 1);
-  else estado.paginaActual = Number(valor);
+  } else {
+    estado.paginaActual = Number(valor);
+  }
 
   renderProductos();
-  gridProductos.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
-// Clicks en "agregar al carrito" (delegación de eventos, porque las tarjetas se recrean)
 gridProductos.addEventListener("click", (e) => {
-  const btn = e.target.closest(".producto-agregar");
-  if (!btn) return;
-
-  const id = Number(btn.dataset.id);
-  const producto = productos.find((p) => p.id === id);
-  
+  //redirección detalle producto
+  window.location.href = "/pages/html/detalle.html";
 });
-
 
 async function cargarProductos() {
   gridProductos.innerHTML = `<p class="sin-resultados">Cargando productos...</p>`;
@@ -214,4 +204,20 @@ async function cargarProductos() {
   }
 }
 
+function filtroURL() {
+
+  const params = new URLSearchParams(window.location.search);
+
+  const filtro = params.get("filter");
+
+  if (filtro) {
+    estado.texto = filtro;
+    inputBuscar.value = filtro;
+    console.log("buscador header:", filtro);
+  } else {
+    console.log("no hay filtro en la URL");
+    
+  }
+}
+filtroURL();
 cargarProductos();

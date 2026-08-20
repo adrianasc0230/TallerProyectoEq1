@@ -16,7 +16,7 @@ class FooterAgro extends HTMLElement {
 
     const wrapper = document.createElement("div");
     wrapper.innerHTML = `
-      <footer class="footer">
+      <footer class="footer" id="sobre-mi">
         <div class="footer-container">
           <div class="footer-logo">
             <img src="/img/logoverticalletras blancas.png" alt="Agroanima Logo Vertical" />
