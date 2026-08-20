@@ -16,7 +16,6 @@ const gridProductos = document.getElementById("gridProductos");
 const paginacionEl = document.getElementById("paginacion");
 const inputBuscar = document.getElementById("inputBuscar");
 const filtroCategorias = document.getElementById("filtroCategorias");
-const carritoContador = document.getElementById("carritoContador");
 
 function inicializarFiltros() {
   const categoriasUnicas = [...new Set(productos.map((p) => p.categoria))];
@@ -40,16 +39,16 @@ function obtenerProductosFiltrados() {
   return productos.filter((p) => {
     const coincideTexto = p.nombre
       .toLowerCase()
-      .includes(estado.texto.toLowerCase());
+      .includes(estado.texto.toLowerCase()) || p.categoria
+      .toLowerCase()
+      .includes(estado.texto.toLowerCase()) ;
     const coincideCategoria =
       estado.categorias.size === 0 || estado.categorias.has(p.categoria);
-    const coincideDisponibilidad = !estado.soloDisponibles || p.disponible;
     const coincidePrecio =
       p.precio >= estado.precioMin && p.precio <= estado.precioMax;
     return (
       coincideTexto &&
       coincideCategoria &&
-      coincideDisponibilidad &&
       coincidePrecio
     );
   });
