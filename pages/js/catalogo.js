@@ -9,7 +9,7 @@ const estado = {
   precioMin: 0,
   precioMax: Infinity,
   paginaActual: 1,
-  porPagina: 3,
+  porPagina: 6,
 };
 
 const gridProductos = document.getElementById("gridProductos");
@@ -183,7 +183,7 @@ paginacionEl.addEventListener("click", (e) => {
 
 gridProductos.addEventListener("click", (e) => {
   //redirección detalle producto
-  window.location.href = "/pages/html/detalle.html";
+  window.location.href = "./detalle.html";
 });
 
 async function cargarProductos() {
