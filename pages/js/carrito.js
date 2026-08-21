@@ -1,5 +1,3 @@
-// carrito independiente, para su uso en todas las páginas
-
 const RUTA_ESTRELLA_CARRITO = 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2z';
  
 class CarritoDrawer extends HTMLElement {
@@ -261,7 +259,10 @@ class CarritoDrawer extends HTMLElement {
     this._el.btnCerrar.addEventListener('click', () => this.cerrar());
     this._el.overlay.addEventListener('click', () => this.cerrar());
     this._el.btnPagar.addEventListener('click', () => {
-      this.mostrarToast('Redirigiendo al checkout...');
+      if(this.obtenerCarrito().length === 0) return; // nada que pagar
+      this.vaciarCarrito();
+      this.mostrarToast('¡Compra realizada! Redirigiendo al checkout...');
+      this.cerrar();
     });
   }
  
@@ -287,7 +288,6 @@ class CarritoDrawer extends HTMLElement {
       return true;
     };
  
-    // El header puede tardar unos milisegundos en montarse según el orden de los <script defer>
     if(!intentar()){
       let intentos = 0;
       const intervalo = setInterval(() => {
@@ -322,7 +322,7 @@ class CarritoDrawer extends HTMLElement {
     return html;
   }
  
-  /*localStorage */
+  /* Persistencia (localStorage) */
  
   obtenerCarrito(){
     return JSON.parse(localStorage.getItem('carrito')) || [];
@@ -376,6 +376,12 @@ class CarritoDrawer extends HTMLElement {
   eliminar(id){
     const carrito = this.obtenerCarrito().filter(item => item.id !== id);
     this.guardarCarrito(carrito);
+    this.actualizarContadorHeader();
+    this._renderizar();
+  }
+ 
+  vaciarCarrito(){
+    this.guardarCarrito([]);
     this.actualizarContadorHeader();
     this._renderizar();
   }
@@ -452,9 +458,7 @@ class CarritoDrawer extends HTMLElement {
 }
  
 customElements.define('carrito-drawer', CarritoDrawer);
- 
 
- 
 window.agregarAlCarrito = function(producto, cantidad = 1){
   const carritoDrawer = document.querySelector('carrito-drawer');
   if(carritoDrawer) carritoDrawer.agregar(producto, cantidad);
@@ -468,4 +472,9 @@ window.abrirCarrito = function(){
 window.mostrarToastCarrito = function(mensaje){
   const carritoDrawer = document.querySelector('carrito-drawer');
   if(carritoDrawer) carritoDrawer.mostrarToast(mensaje);
+};
+ 
+window.vaciarCarrito = function(){
+  const carritoDrawer = document.querySelector('carrito-drawer');
+  if(carritoDrawer) carritoDrawer.vaciarCarrito();
 };

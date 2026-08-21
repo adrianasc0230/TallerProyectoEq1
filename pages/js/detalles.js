@@ -2,12 +2,12 @@ const URL_API = 'https://6a7d0561f8b2ed99ca4dc907.mockapi.io/productos';
  
 document.addEventListener('DOMContentLoaded', () => {
  
-  /* ---------- Estado ---------- */
+
   let todosLosProductos = [];
   let productoActual    = null;
   let cantidadSeleccionada = 1;
  
-  /* ---------- Referencias al DOM ---------- */
+  /* Referencias al DOM */
   const el = {
     rutaActual:       document.getElementById('rutaActual'),
     mainImage:        document.getElementById('mainImage'),
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
   const RUTA_ESTRELLA = 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2z';
  
-  /* ---------- Utilidades ---------- */
+  /* Utilidades */
  
   function formatearPrecio(valor, moneda){
     const formateado = Number(valor).toLocaleString('es-CO');
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return html;
   }
  
-  /* ---------- Selector de cantidad ---------- */
+  /* Selector de cantidad */
  
   function cambiarCantidad(delta){
     cantidadSeleccionada = Math.max(1, cantidadSeleccionada + delta);
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   el.btnDisminuir.addEventListener('click', () => cambiarCantidad(-1));
   el.btnAumentar.addEventListener('click', () => cambiarCantidad(1));
  
-  /* ---------- Carrito: delega en el componente <carrito-drawer> ---------- */
+  /* Carrito*/
  
   el.btnAgregar.addEventListener('click', () => {
     if(productoActual) window.agregarAlCarrito(productoActual, cantidadSeleccionada);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.mostrarToastCarrito('Redirigiendo al checkout...');
   });
  
-  /* ---------- Carga de datos desde la API ---------- */
+  /* Carga de datos desde la API  */
  
   async function obtenerProductos(){
     const respuesta = await fetch(URL_API);
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
  
-  /* ---------- Render: producto principal ---------- */
+  /* producto principal */
  
   function renderizarProductoPrincipal(producto){
     productoActual = producto;
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
  
-  /* ---------- Render: productos relacionados ---------- */
+  /* productos relacionados */
  
   function renderizarRelacionados(producto){
     const relacionados = todosLosProductos
@@ -216,8 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
- 
-  /* ---------- Arranque ---------- */
-  iniciar();
+   iniciar();
  
 });
