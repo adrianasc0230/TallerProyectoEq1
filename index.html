@@ -1,158 +1,233 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AgroAnima</title>
-    <script src="./components/header/HeaderAgro.js" defer></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="./components/footer/FooterAgro.js" defer></script>
+
+    <script>
+      const BASE = location.hostname.includes("github.io")
+        ? "/TallerProyectoEq1/"
+        : "/";
+
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = BASE + "index.css";
+      document.head.appendChild(css);
+
+      const headerScript = document.createElement("script");
+      headerScript.src = BASE + "components/header/HeaderAgro.js";
+      headerScript.defer = true;
+      document.head.appendChild(headerScript);
+
+      const footerScript = document.createElement("script");
+      footerScript.src = BASE + "components/footer/FooterAgro.js";
+      footerScript.defer = true;
+      document.head.appendChild(footerScript);
+
+      const carritoScript = document.createElement("script");
+      carritoScript.src = BASE + "pages/js/carrito.js";
+      carritoScript.defer = true;
+      document.head.appendChild(carritoScript);
+
+      const indexScript = document.createElement("script");
+      indexScript.src = BASE + "index.js";
+      indexScript.defer = true;
+      document.head.appendChild(indexScript);
+    </script>
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <script src="./pages/js/carrito.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
+    <header-agro pagina="inicio"></header-agro>
 
-<header-agro pagina="inicio"></header-agro>
+    <section class="el-potrero-principal">
+      <div class="sombra-bacana">
+        <div class="cuadre-del-texto">
+          <span class="chapa-de-orgullo">LÍDERES EN COLOMBIA</span>
 
+          <h1 class="el-grito-fuerte">
+            SOLUCIONES INTEGRALES PARA EL AGRO COLOMBIANO
+          </h1>
 
-<section class="el-potrero-principal">
-   
-  <div class="sombra-bacana">
-     
-    <div class="cuadre-del-texto">
-  
-      <span class="chapa-de-orgullo">LÍDERES EN COLOMBIA</span>
-  
-      <h1 class="el-grito-fuerte">
-        SOLUCIONES INTEGRALES PARA EL AGRO COLOMBIANO
-      </h1>
-  
-      <p class="la-carreta-buena">
-        Liderando la innovación en nutrición, salud y tecnología animal y agrícola. Calidad respaldada por expertos.
-      </p>
- 
-      <div class="los-botones-bravos">
-        <a href="./pages/html/catalogo.html" class="boton-pa-lante">EXPLORAR PRODUCTOS</a>
+          <p class="la-carreta-buena">
+            Liderando la innovación en nutrición, salud y tecnología animal y
+            agrícola. Calidad respaldada por expertos.
+          </p>
+
+          <div class="los-botones-bravos">
+            <a href="./pages/html/catalogo.html" class="boton-pa-lante"
+              >EXPLORAR PRODUCTOS</a
+            >
+          </div>
+        </div>
+
+        <div
+          class="las-pepas-guia"
+          aria-label="Controles del carrusel de imágenes"
+        >
+          <button
+            class="flecha-pa-tras"
+            aria-label="Ver imagen anterior"
+          ></button>
+          <span class="pepa-activa" aria-current="true"></span>
+          <span class="pepa-dormida"></span>
+          <button
+            class="flecha-pa-lante"
+            aria-label="Ver siguiente imagen"
+          ></button>
+        </div>
       </div>
+    </section>
 
-    </div>
- 
-    <div class="las-pepas-guia" aria-label="Controles del carrusel de imágenes">
-      <button class="flecha-pa-tras" aria-label="Ver imagen anterior"></button>
-      <span class="pepa-activa" aria-current="true"></span>
-      <span class="pepa-dormida"></span>
-      <button class="flecha-pa-lante" aria-label="Ver siguiente imagen"></button>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!--  SECCIÓN: NUESTRAS CATEGORÍAS -->
-<section class="los-combos-del-campo">
-  <div class="contenedor-seccion">
-    
-    <!-- Encabezado de la sección -->
-    <div class="encabezado-del-parche">
-      <h2 class="titulo-firme">Nuestras Categorías</h2>
-      <p class="la-carreta-suave">Selecciones especializadas para cada una de tus necesidades en el campo</p>
-    </div>
-
-    
-    <div class="cuadricula-categorias">
-      
-      
-      <article class="tarjeta-combo" style="background-image: url('./img/Imagen\ del\ Hero.png');">
-        <!-- Capa oscura para garantizar lectura -->
-        <div class="sombra-oscura"></div> 
-        
-        
-        <div class="contenido-combo">
-          <span class="icono-redondo"><i class='bx bx-cut'></i></span>
-          <h3 class="nombre-combo">Nutrición Animal</h3>
-          <p class="descripcion-combo">Fórmulas y suplementos para el bienestar de tu ganado.</p>
-          <a href="https://www.fao.org/animal-production/es/" target="_blank" rel="noopener noreferrer" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+    <!--  SECCIÓN: NUESTRAS CATEGORÍAS -->
+    <section class="los-combos-del-campo">
+      <div class="contenedor-seccion">
+        <!-- Encabezado de la sección -->
+        <div class="encabezado-del-parche">
+          <h2 class="titulo-firme">Nuestras Categorías</h2>
+          <p class="la-carreta-suave">
+            Selecciones especializadas para cada una de tus necesidades en el
+            campo
+          </p>
         </div>
-      </article>
 
-      
-      <article class="tarjeta-combo" style="background-image: url('./img/Salud\ y\ bienestar.jpg');">
-        <div class="sombra-oscura"></div>
-        
-        <div class="contenido-combo">
-          <span class="icono-redondo"><i class='bx bx-pulse'></i></span>
-          <h3 class="nombre-combo">Salud y Bienestar</h3>
-          <p class="descripcion-combo">Proteger la vida de tus animales.</p>
-          <a href="https://www.ica.gov.co/" target="_blank" rel="noopener noreferrer" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+        <div class="cuadricula-categorias">
+          <article
+            class="tarjeta-combo"
+            style="
+              background-image: url(&quot;./img/Imagen\ del\ Hero.png&quot;);
+            "
+          >
+            <!-- Capa oscura para garantizar lectura -->
+            <div class="sombra-oscura"></div>
+
+            <div class="contenido-combo">
+              <span class="icono-redondo"><i class="bx bx-cut"></i></span>
+              <h3 class="nombre-combo">Nutrición Animal</h3>
+              <p class="descripcion-combo">
+                Fórmulas y suplementos para el bienestar de tu ganado.
+              </p>
+              <a
+                href="https://www.fao.org/animal-production/es/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="enlace-flecha"
+                >Ver Categoría <i class="bx bx-right-arrow-alt"></i
+              ></a>
+            </div>
+          </article>
+
+          <article
+            class="tarjeta-combo"
+            style="
+              background-image: url(&quot;./img/Salud\ y\ bienestar.jpg&quot;);
+            "
+          >
+            <div class="sombra-oscura"></div>
+
+            <div class="contenido-combo">
+              <span class="icono-redondo"><i class="bx bx-pulse"></i></span>
+              <h3 class="nombre-combo">Salud y Bienestar</h3>
+              <p class="descripcion-combo">Proteger la vida de tus animales.</p>
+              <a
+                href="https://www.ica.gov.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="enlace-flecha"
+                >Ver Categoría <i class="bx bx-right-arrow-alt"></i
+              ></a>
+            </div>
+          </article>
+
+          <article
+            class="tarjeta-combo"
+            style="
+              background-image: url(&quot;./img/Equipos\ agricolas.jpg&quot;);
+            "
+          >
+            <div class="sombra-oscura"></div>
+
+            <div class="contenido-combo">
+              <span class="icono-redondo"
+                ><i class="bx bx-shape-square"></i
+              ></span>
+              <h3 class="nombre-combo">Equipos Agrícolas</h3>
+              <p class="descripcion-combo">
+                Maquinaria y tecnología de precisión
+              </p>
+              <a
+                href="https://www.agronegocios.co/tecnologia//"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="enlace-flecha"
+                >Ver Categoría <i class="bx bx-right-arrow-alt"></i
+              ></a>
+            </div>
+          </article>
+
+          <article
+            class="tarjeta-combo"
+            style="
+              background-image: url(&quot;./img/Semillas\ y\ Fertilizantes.jpg&quot;);
+            "
+          >
+            <div class="sombra-oscura"></div>
+
+            <div class="contenido-combo">
+              <span class="icono-redondo"><i class="bx bx-spa"></i></span>
+              <h3 class="nombre-combo">Semillas y Fertilizantes</h3>
+              <p class="descripcion-combo">
+                Insumos de alta calidad para nutrir tu suelo.
+              </p>
+              <a
+                href="https://alliancebioversityciat.org/es//"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="enlace-flecha"
+                >Ver Categoría <i class="bx bx-right-arrow-alt"></i
+              ></a>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
+    </section>
 
-      
-      <article class="tarjeta-combo" style="background-image: url('./img/Equipos\ agricolas.jpg');">
-        <div class="sombra-oscura"></div>
-        
-        <div class="contenido-combo">
-          <span class="icono-redondo"><i class='bx bx-shape-square'></i></span>
-          <h3 class="nombre-combo">Equipos Agrícolas</h3>
-          <p class="descripcion-combo">Maquinaria y tecnología de precisión</p>
-          <a href="https://www.agronegocios.co/tecnologia//" target="_blank" rel="noopener noreferrer" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+    <!-- SECCIÓN: PRODUCTOS DESTACADOS-->
+    <section class="lo-mas-melo">
+      <div class="contenedor-seccion">
+        <div class="encabezado-del-parche">
+          <h2 class="titulo-firme">Productos Destacados</h2>
+          <p class="la-carreta-suave">
+            Lo más renicido y recomendada por nuestros espaníes agrececeerios
+          </p>
         </div>
-      </article>
 
-      
-      <article class="tarjeta-combo" style="background-image: url('./img/Semillas\ y\ Fertilizantes.jpg');">
-        <div class="sombra-oscura"></div>
-        
-        <div class="contenido-combo">
-          <span class="icono-redondo"><i class='bx bx-spa'></i></span>
-          <h3 class="nombre-combo">Semillas y Fertilizantes</h3>
-          <p class="descripcion-combo">Insumos de alta calidad para nutrir tu suelo.</p>
-          <a href="https://alliancebioversityciat.org/es//" target="_blank" rel="noopener noreferrer" class="enlace-flecha">Ver Categoría <i class='bx bx-right-arrow-alt'></i></a>
+        <!-- 1. AQUÍ ESTÁ LA CLAVE: Agregamos el id="vitrina-dinamica" y dejamos el div VACÍO -->
+        <div class="vitrina-productos" id="vitrina-dinamica">
+          <!-- Las tarjetas se cargarán aquí por arte de magia (JavaScript) -->
         </div>
-      </article>
 
-    </div>
-  </div>
-</section>
+        <!-- Puntos indicadores de paginación (abajo) -->
+        <div class="bolitas-guia" aria-label="Controles de página">
+          <span class="bolita-activa"></span>
+          <span class="bolita-dormida"></span>
+        </div>
+      </div>
+    </section>
 
+    <!-- ingreso del carrit y el footer -->
+    <carrito-drawer></carrito-drawer>
 
-
-<!-- SECCIÓN: PRODUCTOS DESTACADOS-->
-<section class="lo-mas-melo">
-  <div class="contenedor-seccion">
-    
-    <div class="encabezado-del-parche">
-      <h2 class="titulo-firme">Productos Destacados</h2>
-      <p class="la-carreta-suave">Lo más renicido y recomendada por nuestros espaníes agrececeerios</p>
-    </div>
-
-    <!-- 1. AQUÍ ESTÁ LA CLAVE: Agregamos el id="vitrina-dinamica" y dejamos el div VACÍO -->
-    <div class="vitrina-productos" id="vitrina-dinamica">
-      <!-- Las tarjetas se cargarán aquí por arte de magia (JavaScript) -->
-    </div>
-
-    <!-- Puntos indicadores de paginación (abajo) -->
-    <div class="bolitas-guia" aria-label="Controles de página">
-      <span class="bolita-activa"></span>
-      <span class="bolita-dormida"></span>
-    </div>
-
-  </div>
-</section>
-
-<!-- ingreso del carrit y el footer -->
-<carrito-drawer></carrito-drawer>
-
-<footer-agro id="footer-contacto"></footer-agro>
+    <footer-agro id="footer-contacto"></footer-agro>
 
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
-
-
-
