@@ -87,7 +87,7 @@ formularioBuscador.addEventListener('submit', (evento) => {
 
   const loQueBusco = campoBusqueda.value.trim();
   if (loQueBusco !== '') {  
-    window.location.href = `/pages/html/catalogo.html?filter=${loQueBusco}`;  
+    window.location.href = `./pages/html/catalogo.html?filter=${loQueBusco}`;  
   } else {
     console.log("El compa no escribió nada para buscar.");
   }
