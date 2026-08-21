@@ -12,63 +12,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <script src="/pages/js/carrito.js" defer></script>
+    <script src="./pages/js/carrito.js" defer></script>
 </head>
 <body>
 
-
-  
-  <div class="cinta-cazadora">
-    <div class="contenedor-tinto">
-
-      
-      <form class="buscador-avispado" id="formulario-cazador">
-        <i class="icono-lupa-firme"></i>
-        <input type="text" id="campo-busqueda" name="q" placeholder="Buscar productos..." aria-label="Buscar productos">
-      </form>
-
-     
-      <div class="opciones-de-una">
-        <a href="/perfil" class="perfil-parcero" aria-label="Perfil de usuario">
-          <i class="icono-compita"></i>
-        </a>
-        <span class="plata-lucas">COP</span>
-      </div>
-
-    </div>
-  </div>
-
-  
-  <nav class="brujula-principal">
-    <div class="contenedor-fino">
-
-      <div class="sello-grafico">
-        <a href="/">
-          <img src="./img/logohorizontalletrasazules.png" alt="Logo de AgroAnima Colombia">
-        </a>
-      </div>
-
-      <ul class="rutas-del-parche" id="techo-principal">
-        <li><a href="/" class="la-propia">Inicio</a></li>
-        <li><a href="/pages/html/catalogo.html">Catálogo</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
-
-      
-      <div class="movidas-rapidas">
-        <a href="./pages/html/login.html" class="enlace-pilo" aria-label="Iniciar sesión">
-          <i class='bx bx-user'></i></a>
-         <a href="./pages/html/detalle.html" class="el-canasto" aria-label="Ver carrito">
-          <i class='bx bx-cart'></i>
-         <span class="notificacion-campanazo">3</span>
-        </a>
-      </div>
-
-    </div>
-  </nav>
-
-</header>
-  
+<header-agro pagina="inicio"></header-agro>
 
 
 <section class="el-potrero-principal">
@@ -197,7 +145,7 @@
   </div>
 </section>
 
-// ingreso del carrit y el footer
+<!-- ingreso del carrit y el footer -->
 <carrito-drawer></carrito-drawer>
 
 <footer-agro id="footer-contacto"></footer-agro>

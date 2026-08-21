@@ -16,19 +16,27 @@
         --radio: 8px;
         --sombra: 0 10px 35px rgba(0,0,0,0.08);
 }
-body {                                                  
+body {
     font-family: Arial, Helvetica, sans-serif;
     background: var(--blanco-puro);
     color: var(--verde-agro);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 15px;
+    flex-direction: column; 
 }
+
+main {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+}
+
+
+
 .contenedor {                                                 /*main*/
     width: 100%;
-    max-width: 850px;
+    max-width: 100%;
     display: flex;
     justify-content: center;
 } 
